@@ -63,6 +63,66 @@ namespace Gerenciador_rotina.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AZUL {
+            get {
+                object obj = ResourceManager.GetObject("AZUL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap criar {
+            get {
+                object obj = ResourceManager.GetObject("criar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap criar1 {
+            get {
+                object obj = ResourceManager.GetObject("criar1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap criar2 {
+            get {
+                object obj = ResourceManager.GetObject("criar2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap INSERIR_CÓDIGO {
+            get {
+                object obj = ResourceManager.GetObject("INSERIR CÓDIGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap INSERIR_CÓDIGO1 {
+            get {
+                object obj = ResourceManager.GetObject("INSERIR CÓDIGO1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Inserir_um_título {
             get {
                 object obj = ResourceManager.GetObject("Inserir um título", resourceCulture);
@@ -176,6 +236,46 @@ namespace Gerenciador_rotina.Properties {
         internal static System.Drawing.Bitmap Inserir_um_título1 {
             get {
                 object obj = ResourceManager.GetObject("Inserir um título1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap REDEFINIÇÃO {
+            get {
+                object obj = ResourceManager.GetObject("REDEFINIÇÃO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap REDEFINIR_SENHA {
+            get {
+                object obj = ResourceManager.GetObject("REDEFINIR SENHA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TELADELOGIN {
+            get {
+                object obj = ResourceManager.GetObject("TELADELOGIN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VERDE {
+            get {
+                object obj = ResourceManager.GetObject("VERDE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -16,7 +16,10 @@ namespace Gerenciador_rotina
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+          
             Application.Run(new FrmLog());
         }
     }
 }
+
+

@@ -46,11 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAuthentication.Designer.cs">
+      <DependentUpon>FrmAuthentication.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCreate.cs">
       <SubType>Form</SubType>
@@ -58,13 +65,34 @@
     <Compile Include="FrmCreate.Designer.cs">
       <DependentUpon>FrmCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmForgot2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmForgot2.Designer.cs">
+      <DependentUpon>FrmForgot2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmForgotKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmForgotKey.Designer.cs">
+      <DependentUpon>FrmForgotKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAuthentication.resx">
+      <DependentUpon>FrmAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCreate.resx">
       <DependentUpon>FrmCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmForgot2.resx">
+      <DependentUpon>FrmForgot2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmForgotKey.resx">
+      <DependentUpon>FrmForgotKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +152,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Inserir um título %2810%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AZUL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\criar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\INSERIR CÓDIGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\REDEFINIÇÃO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\REDEFINIR SENHA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TELADELOGIN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VERDE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\criar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\INSERIR CÓDIGO1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\criar2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

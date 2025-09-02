@@ -28,75 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtbCreateEmail = new System.Windows.Forms.TextBox();
-            this.txtbCreateSenha = new System.Windows.Forms.TextBox();
-            this.txtbCreateSenha2 = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
+            this.txtbCriarNomeUsuario = new System.Windows.Forms.TextBox();
+            this.txtbCriarEmail = new System.Windows.Forms.TextBox();
+            this.txtbCriarSenha = new System.Windows.Forms.TextBox();
+            this.btnCriarConta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtbCreateEmail
+            // txtbCriarNomeUsuario
             // 
-            this.txtbCreateEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtbCriarNomeUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtbCreateEmail.BackColor = System.Drawing.Color.OldLace;
-            this.txtbCreateEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtbCreateEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbCreateEmail.Location = new System.Drawing.Point(1134, 280);
-            this.txtbCreateEmail.Name = "txtbCreateEmail";
-            this.txtbCreateEmail.Size = new System.Drawing.Size(709, 62);
-            this.txtbCreateEmail.TabIndex = 1;
+            this.txtbCriarNomeUsuario.BackColor = System.Drawing.Color.OldLace;
+            this.txtbCriarNomeUsuario.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtbCriarNomeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbCriarNomeUsuario.Location = new System.Drawing.Point(1134, 246);
+            this.txtbCriarNomeUsuario.Name = "txtbCriarNomeUsuario";
+            this.txtbCriarNomeUsuario.Size = new System.Drawing.Size(709, 62);
+            this.txtbCriarNomeUsuario.TabIndex = 1;
             // 
-            // txtbCreateSenha
+            // txtbCriarEmail
             // 
-            this.txtbCreateSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtbCriarEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtbCreateSenha.BackColor = System.Drawing.Color.OldLace;
-            this.txtbCreateSenha.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtbCreateSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbCreateSenha.Location = new System.Drawing.Point(1134, 497);
-            this.txtbCreateSenha.Name = "txtbCreateSenha";
-            this.txtbCreateSenha.Size = new System.Drawing.Size(709, 62);
-            this.txtbCreateSenha.TabIndex = 2;
+            this.txtbCriarEmail.BackColor = System.Drawing.Color.OldLace;
+            this.txtbCriarEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtbCriarEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbCriarEmail.Location = new System.Drawing.Point(1134, 445);
+            this.txtbCriarEmail.Name = "txtbCriarEmail";
+            this.txtbCriarEmail.Size = new System.Drawing.Size(709, 62);
+            this.txtbCriarEmail.TabIndex = 2;
             // 
-            // txtbCreateSenha2
+            // txtbCriarSenha
             // 
-            this.txtbCreateSenha2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtbCriarSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtbCreateSenha2.BackColor = System.Drawing.Color.OldLace;
-            this.txtbCreateSenha2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtbCreateSenha2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbCreateSenha2.Location = new System.Drawing.Point(1134, 697);
-            this.txtbCreateSenha2.Name = "txtbCreateSenha2";
-            this.txtbCreateSenha2.Size = new System.Drawing.Size(709, 62);
-            this.txtbCreateSenha2.TabIndex = 3;
+            this.txtbCriarSenha.BackColor = System.Drawing.Color.OldLace;
+            this.txtbCriarSenha.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtbCriarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbCriarSenha.Location = new System.Drawing.Point(1134, 619);
+            this.txtbCriarSenha.Name = "txtbCriarSenha";
+            this.txtbCriarSenha.Size = new System.Drawing.Size(709, 62);
+            this.txtbCriarSenha.TabIndex = 3;
             // 
-            // btnLogin
+            // btnCriarConta
             // 
-            this.btnLogin.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.Inserir_um_título__10_;
-            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnLogin.Location = new System.Drawing.Point(1324, 782);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(331, 113);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "ENTRAR";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnCriarConta.BackColor = System.Drawing.Color.Transparent;
+            this.btnCriarConta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCriarConta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCriarConta.FlatAppearance.BorderColor = System.Drawing.Color.Aqua;
+            this.btnCriarConta.FlatAppearance.BorderSize = 0;
+            this.btnCriarConta.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCriarConta.ForeColor = System.Drawing.Color.Transparent;
+            this.btnCriarConta.Location = new System.Drawing.Point(1237, 808);
+            this.btnCriarConta.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCriarConta.Name = "btnCriarConta";
+            this.btnCriarConta.Size = new System.Drawing.Size(504, 126);
+            this.btnCriarConta.TabIndex = 5;
+            this.btnCriarConta.UseVisualStyleBackColor = false;
+            this.btnCriarConta.Click += new System.EventHandler(this.btnCriarConta_Click);
             // 
             // FrmCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.Inserir_um_título__9_;
+            this.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.criar2;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtbCreateSenha2);
-            this.Controls.Add(this.txtbCreateSenha);
-            this.Controls.Add(this.txtbCreateEmail);
+            this.Controls.Add(this.btnCriarConta);
+            this.Controls.Add(this.txtbCriarSenha);
+            this.Controls.Add(this.txtbCriarEmail);
+            this.Controls.Add(this.txtbCriarNomeUsuario);
             this.Name = "FrmCreate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRIAR CONTA";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmCreate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,9 +109,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtbCreateEmail;
-        private System.Windows.Forms.TextBox txtbCreateSenha;
-        private System.Windows.Forms.TextBox txtbCreateSenha2;
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.TextBox txtbCriarNomeUsuario;
+        private System.Windows.Forms.TextBox txtbCriarEmail;
+        private System.Windows.Forms.TextBox txtbCriarSenha;
+        private System.Windows.Forms.Button btnCriarConta;
     }
 }

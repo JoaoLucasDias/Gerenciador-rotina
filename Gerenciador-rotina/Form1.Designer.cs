@@ -30,9 +30,9 @@
         {
             this.txtbLogEmail = new System.Windows.Forms.TextBox();
             this.txtbLogSenha = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCriar = new System.Windows.Forms.Button();
+            this.btnEsqueceuSenha = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtbLogEmail
@@ -59,29 +59,6 @@
             this.txtbLogSenha.Size = new System.Drawing.Size(709, 62);
             this.txtbLogSenha.TabIndex = 1;
             // 
-            // btnLogin
-            // 
-            this.btnLogin.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.Inserir_um_título__8_;
-            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.Navy;
-            this.btnLogin.Location = new System.Drawing.Point(1337, 743);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(331, 113);
-            this.btnLogin.TabIndex = 2;
-            this.btnLogin.Text = "ENTRAR";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btnCriar
             // 
             this.btnCriar.BackColor = System.Drawing.Color.Transparent;
@@ -89,7 +66,7 @@
             this.btnCriar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCriar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCriar.ForeColor = System.Drawing.Color.Transparent;
-            this.btnCriar.Location = new System.Drawing.Point(1269, 904);
+            this.btnCriar.Location = new System.Drawing.Point(1270, 878);
             this.btnCriar.Margin = new System.Windows.Forms.Padding(0);
             this.btnCriar.Name = "btnCriar";
             this.btnCriar.Size = new System.Drawing.Size(469, 48);
@@ -97,21 +74,51 @@
             this.btnCriar.UseVisualStyleBackColor = false;
             this.btnCriar.Click += new System.EventHandler(this.btnCriar_Click);
             // 
+            // btnEsqueceuSenha
+            // 
+            this.btnEsqueceuSenha.BackColor = System.Drawing.Color.Transparent;
+            this.btnEsqueceuSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEsqueceuSenha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEsqueceuSenha.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEsqueceuSenha.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEsqueceuSenha.Location = new System.Drawing.Point(1248, 937);
+            this.btnEsqueceuSenha.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEsqueceuSenha.Name = "btnEsqueceuSenha";
+            this.btnEsqueceuSenha.Size = new System.Drawing.Size(511, 48);
+            this.btnEsqueceuSenha.TabIndex = 5;
+            this.btnEsqueceuSenha.UseVisualStyleBackColor = false;
+            this.btnEsqueceuSenha.Click += new System.EventHandler(this.btnEsqueceuSenha_Click);
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLogin.ForeColor = System.Drawing.Color.Transparent;
+            this.btnLogin.Location = new System.Drawing.Point(1261, 744);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(0);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(510, 123);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.UseVisualStyleBackColor = false;
+            // 
             // FrmLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.Inserir_um_título__7_;
+            this.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.TELADELOGIN;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
-            this.Controls.Add(this.btnCriar);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnEsqueceuSenha);
+            this.Controls.Add(this.btnCriar);
             this.Controls.Add(this.txtbLogSenha);
             this.Controls.Add(this.txtbLogEmail);
             this.Name = "FrmLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmLog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,9 +128,9 @@
 
         private System.Windows.Forms.TextBox txtbLogEmail;
         private System.Windows.Forms.TextBox txtbLogSenha;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCriar;
+        private System.Windows.Forms.Button btnEsqueceuSenha;
+        private System.Windows.Forms.Button btnLogin;
     }
 }
 

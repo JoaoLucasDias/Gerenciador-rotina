@@ -30,5 +30,18 @@ namespace Gerenciador_rotina
         {
 
         }
+
+        private void btnEsqueceuSenha_Click(object sender, EventArgs e)
+        {
+            FrmForgotKey frmForgotKey = new FrmForgotKey();
+           
+            frmForgotKey.Show();
+
+        }
+
+        private void FrmLog_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
