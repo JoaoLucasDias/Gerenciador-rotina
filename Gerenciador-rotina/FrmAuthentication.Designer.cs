@@ -57,6 +57,7 @@
             this.btnAutenticar.Size = new System.Drawing.Size(504, 126);
             this.btnAutenticar.TabIndex = 7;
             this.btnAutenticar.UseVisualStyleBackColor = false;
+            this.btnAutenticar.Click += new System.EventHandler(this.btnAutenticar_Click);
             // 
             // FrmAuthentication
             // 

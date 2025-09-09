@@ -21,50 +21,41 @@ namespace Gerenciador_rotina
             InitializeComponent();
         }
 
-        private void btnEnviarCodigo_Click(object sender, EventArgs e)
+            private void btnEnviarCodigo_Click(object sender, EventArgs e)
         {
-           
+            // 1. Pega o e-mail do usuário
+            string emailDestino = txtbCodigoVerificacao.Text;
 
-
-            string email = txtbCodigoVerificacao.Text;
-
-            // Gera código
+            // 2. Gera um código aleatório de 6 dígitos
             string codigo = new Random().Next(100000, 999999).ToString();
 
-            using (SqlConnection con = new SqlConnection("Data Source=SEU_SERVIDOR;Initial Catalog=SEU_BANCO;Integrated Security=True"))
+            try
             {
-                con.Open();
+                // 3. Usa a classe auxiliar para enviar
+                EmailHelper.EnviarEmailRedefinicao(emailDestino, codigo);
 
-                // Verifica se existe usuário com esse e-mail
-                string queryUsuario = "SELECT Id FROM Usuario WHERE EMAIL = @Email";
-                SqlCommand cmdUsuario = new SqlCommand(queryUsuario, con);
-                cmdUsuario.Parameters.AddWithValue("@Email", email);
-
-                object usuarioIdObj = cmdUsuario.ExecuteScalar();
-                if (usuarioIdObj == null)
-                {
-                    MessageBox.Show("E-mail não encontrado!");
-                    return;
-                }
-
-                int usuarioId = Convert.ToInt32(usuarioIdObj);
-
-                // Salva código na tabela ResetSenha
-                string queryInsert = @"INSERT INTO ResetSenha (UsuarioId, Codigo, ExpiraEm) 
-                               VALUES (@UsuarioId, @Codigo, @ExpiraEm)";
-                SqlCommand cmdInsert = new SqlCommand(queryInsert, con);
-                cmdInsert.Parameters.AddWithValue("@UsuarioId", usuarioId);
-                cmdInsert.Parameters.AddWithValue("@Codigo", codigo);
-                cmdInsert.Parameters.AddWithValue("@ExpiraEm", DateTime.Now.AddMinutes(15));
-                cmdInsert.ExecuteNonQuery();
-
-                // Envia e-mail
-                EmailHelper.EnviarEmailRedefinicao(email, codigo);
+                MessageBox.Show("Um código foi enviado para o e-mail informado!");
+                this.Close();
+                FrmAuthentication frmAuthentication = new FrmAuthentication();
+                    frmAuthentication.Show();
             }
-
-            MessageBox.Show("Um código foi enviado para seu e-mail!");
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
         }
 
+        
+
+        private void FrmForgotKey_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtbCodigoVerificacao_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Net;
+using System.Net.Mail;
 
 namespace Gerenciador_rotina
 {
-    using System;
-    using System.Net;
-    using System.Net.Mail;
+ 
 
     public class EmailHelper
     {
@@ -17,7 +18,7 @@ namespace Gerenciador_rotina
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("seuemail@gmail.com");
+                mail.From = new MailAddress("jld150109@gmail.com");
                 mail.To.Add(emailDestino);
                 mail.Subject = "Redefinição de Senha";
                 mail.Body = $"Olá! Seu código para redefinir a senha é: {codigo}\n" +
@@ -25,7 +26,7 @@ namespace Gerenciador_rotina
 
                 // Servidor SMTP do Gmail
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.Credentials = new NetworkCredential("seuemail@gmail.com", "sua_senha_ou_senha_de_app");
+                smtp.Credentials = new NetworkCredential("jld150109@gmail.com", "lsyn rlme bodp vbvv");
                 smtp.EnableSsl = true;
 
                 smtp.Send(mail);
@@ -35,6 +36,10 @@ namespace Gerenciador_rotina
                 throw new Exception("Erro ao enviar e-mail: " + ex.Message);
             }
         }
+
+       
+
+       
     }
 
 }

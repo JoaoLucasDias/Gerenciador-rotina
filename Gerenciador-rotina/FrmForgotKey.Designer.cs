@@ -60,6 +60,7 @@
             this.txtbCodigoVerificacao.Name = "txtbCodigoVerificacao";
             this.txtbCodigoVerificacao.Size = new System.Drawing.Size(709, 62);
             this.txtbCodigoVerificacao.TabIndex = 7;
+            this.txtbCodigoVerificacao.TextChanged += new System.EventHandler(this.txtbCodigoVerificacao_TextChanged);
             // 
             // FrmForgotKey
             // 
@@ -73,6 +74,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmForgotKey";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmForgotKey_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
