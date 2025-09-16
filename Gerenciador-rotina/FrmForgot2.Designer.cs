@@ -46,6 +46,7 @@
             this.btnAlterarSenha.Size = new System.Drawing.Size(510, 123);
             this.btnAlterarSenha.TabIndex = 7;
             this.btnAlterarSenha.UseVisualStyleBackColor = false;
+            this.btnAlterarSenha.Click += new System.EventHandler(this.btnAlterarSenha_Click);
             // 
             // txtbNovaSenhaConfirmar
             // 
@@ -58,6 +59,7 @@
             this.txtbNovaSenhaConfirmar.Name = "txtbNovaSenhaConfirmar";
             this.txtbNovaSenhaConfirmar.Size = new System.Drawing.Size(709, 62);
             this.txtbNovaSenhaConfirmar.TabIndex = 8;
+            this.txtbNovaSenhaConfirmar.TextChanged += new System.EventHandler(this.txtbNovaSenhaConfirmar_TextChanged);
             // 
             // txtbNovaSenha
             // 

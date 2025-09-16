@@ -77,6 +77,12 @@
     <Compile Include="FrmForgotKey.Designer.cs">
       <DependentUpon>FrmForgotKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTelaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaInicial.Designer.cs">
+      <DependentUpon>FrmTelaInicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

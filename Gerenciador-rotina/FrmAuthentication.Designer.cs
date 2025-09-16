@@ -43,6 +43,7 @@
             this.txtbCodigoAutenticacao.Name = "txtbCodigoAutenticacao";
             this.txtbCodigoAutenticacao.Size = new System.Drawing.Size(709, 62);
             this.txtbCodigoAutenticacao.TabIndex = 1;
+            this.txtbCodigoAutenticacao.TextChanged += new System.EventHandler(this.txtbCodigoAutenticacao_TextChanged);
             // 
             // btnAutenticar
             // 
