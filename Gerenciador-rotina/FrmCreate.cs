@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 
@@ -32,12 +33,18 @@ namespace Gerenciador_rotina
         
         private void btnCriarConta_Click(object sender, EventArgs e)
         {
+            // Pega valores dos TextBox
+            string usuario = txtbCriarNomeUsuario.Text;
+            string email = txtbCriarEmail.Text;
+            string senha = txtbCriarSenha.Text;
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(usuario));
+            {
+                MessageBox.Show("Por favor, preencha todos os campos antes de continuar.");
+                return;
+            }
             try
             {
-                // Pega valores dos TextBox
-                string usuario = txtbCriarNomeUsuario.Text;
-                string email = txtbCriarEmail.Text;
-                string senha = txtbCriarSenha.Text;
+
 
                 // Comando SQL para inserir
                 string query = "INSERT INTO usuario (USUARIO, EMAIL, SENHA) VALUES (@Nome, @Email, @Senha)";
