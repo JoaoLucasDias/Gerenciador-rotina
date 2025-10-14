@@ -85,6 +85,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucAdicionarTarefa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAdicionarTarefa.Designer.cs">
+      <DependentUpon>ucAdicionarTarefa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucBuscar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBuscar.Designer.cs">
+      <DependentUpon>ucBuscar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucEstatisticas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucEstatisticas.Designer.cs">
+      <DependentUpon>ucEstatisticas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucHoje.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucHoje.Designer.cs">
+      <DependentUpon>ucHoje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucEmBreve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucEmBreve.Designer.cs">
+      <DependentUpon>ucEmBreve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucConcluido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucConcluido.Designer.cs">
+      <DependentUpon>ucConcluido.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +149,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucAdicionarTarefa.resx">
+      <DependentUpon>ucAdicionarTarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucHoje.resx">
+      <DependentUpon>ucHoje.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -191,6 +233,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\criar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AZUL1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\INSERIR CÓDIGO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\INSERIR CÓDIGO1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

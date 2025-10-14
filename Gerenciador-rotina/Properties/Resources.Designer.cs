@@ -73,6 +73,16 @@ namespace Gerenciador_rotina.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AZUL1 {
+            get {
+                object obj = ResourceManager.GetObject("AZUL1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap criar {
             get {
                 object obj = ResourceManager.GetObject("criar", resourceCulture);
@@ -116,6 +126,26 @@ namespace Gerenciador_rotina.Properties {
         internal static System.Drawing.Bitmap INSERIR_CÓDIGO1 {
             get {
                 object obj = ResourceManager.GetObject("INSERIR CÓDIGO1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap INSERIR_CÓDIGO2 {
+            get {
+                object obj = ResourceManager.GetObject("INSERIR CÓDIGO2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap INSERIR_CÓDIGO3 {
+            get {
+                object obj = ResourceManager.GetObject("INSERIR CÓDIGO3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
