@@ -28,10 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.flpTarefasEmBreve = new System.Windows.Forms.FlowLayoutPanel();
+            this.SuspendLayout();
+            // 
+            // flpTarefasEmBreve
+            // 
+            this.flpTarefasEmBreve.AutoScroll = true;
+            this.flpTarefasEmBreve.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpTarefasEmBreve.Location = new System.Drawing.Point(0, 0);
+            this.flpTarefasEmBreve.Name = "flpTarefasEmBreve";
+            this.flpTarefasEmBreve.Size = new System.Drawing.Size(1700, 1061);
+            this.flpTarefasEmBreve.TabIndex = 1;
+            this.flpTarefasEmBreve.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTarefasEmBreve_Paint);
+            // 
+            // ucEmBreve
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flpTarefasEmBreve);
+            this.Name = "ucEmBreve";
+            this.Size = new System.Drawing.Size(1700, 1061);
+            this.Load += new System.EventHandler(this.ucEmBreve_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+        private System.Windows.Forms.FlowLayoutPanel flpTarefasEmBreve;
     }
 }

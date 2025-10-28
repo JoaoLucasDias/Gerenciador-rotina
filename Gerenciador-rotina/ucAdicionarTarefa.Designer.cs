@@ -139,6 +139,7 @@
             this.pnlNovaCategoria.Name = "pnlNovaCategoria";
             this.pnlNovaCategoria.Size = new System.Drawing.Size(300, 150);
             this.pnlNovaCategoria.TabIndex = 9;
+            this.pnlNovaCategoria.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNovaCategoria_Paint);
             // 
             // btnCancelarNovaCategoria
             // 

@@ -97,6 +97,12 @@
     <Compile Include="ucBuscar.Designer.cs">
       <DependentUpon>ucBuscar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucCardTarefa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCardTarefa.Designer.cs">
+      <DependentUpon>ucCardTarefa.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucEstatisticas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +157,12 @@
     </Compile>
     <EmbeddedResource Include="ucAdicionarTarefa.resx">
       <DependentUpon>ucAdicionarTarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCardTarefa.resx">
+      <DependentUpon>ucCardTarefa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucEmBreve.resx">
+      <DependentUpon>ucEmBreve.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucHoje.resx">
       <DependentUpon>ucHoje.cs</DependentUpon>

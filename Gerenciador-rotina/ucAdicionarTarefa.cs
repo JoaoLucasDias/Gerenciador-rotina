@@ -175,6 +175,11 @@ namespace Gerenciador_rotina
         {
 
         }
+
+        private void pnlNovaCategoria_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     
 }
