@@ -255,5 +255,8 @@
   <ItemGroup>
     <None Include="Resources\INSERIR CÓDIGO1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

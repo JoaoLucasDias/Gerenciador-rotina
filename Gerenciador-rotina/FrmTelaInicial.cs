@@ -21,12 +21,26 @@ namespace Gerenciador_rotina
 
 
         }
+        private ucHoje telaHoje;
+        private ucEmBreve telaEmBreve;
+        private ucAdicionarTarefa telaAdicionar;
+        private ucBuscar telaBuscar;
+        private ucConcluido telaConcluido;
+        private ucEstatisticas telaEstatisticas;
 
-    
+
 
         private void FrmTelaInicial_Load(object sender, EventArgs e)
         {
-            AbrirTela(new ucHoje());
+            telaHoje = new ucHoje();
+            telaEmBreve = new ucEmBreve();
+            telaAdicionar = new ucAdicionarTarefa();
+            telaBuscar = new ucBuscar();
+            telaConcluido = new ucConcluido();
+            telaEstatisticas = new ucEstatisticas();
+
+            // Exibe a tela "Hoje" por padrão
+            AbrirTela(telaHoje);
         }
         private void AbrirTela(UserControl tela)
         {
@@ -51,37 +65,35 @@ namespace Gerenciador_rotina
         {
 
         }
+        private void btnHoje_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaHoje);
+        }
+
+        private void btnEmBreve_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaEmBreve);
+            telaEmBreve.CarregarTarefasEmBreve(); // 🔥 Garante que atualiza a lista
+        }
 
         private void btnAdicionarTarefa_Click(object sender, EventArgs e)
         {
-            AbrirTela(new ucAdicionarTarefa());
-        }
-
-        
-        private void btnEmBreve_Click(object sender, EventArgs e)
-        {
-            AbrirTela(new ucEmBreve());
-          
-        }
-
-        private void btnHoje_Click(object sender, EventArgs e)
-        {
-            AbrirTela(new ucHoje());
+            AbrirTela(telaAdicionar);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            AbrirTela(new ucBuscar());
+            AbrirTela(telaBuscar);
         }
 
         private void btnConcluido_Click(object sender, EventArgs e)
         {
-            AbrirTela(new ucConcluido());
+            AbrirTela(telaConcluido);
         }
 
         private void btnEstatistica_Click(object sender, EventArgs e)
         {
-            AbrirTela(new ucEstatisticas());
+            AbrirTela(telaEstatisticas);
         }
 
         private void pnlConteudo_Paint(object sender, PaintEventArgs e)

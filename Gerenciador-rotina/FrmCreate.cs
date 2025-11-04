@@ -37,7 +37,7 @@ namespace Gerenciador_rotina
             string usuario = txtbCriarNomeUsuario.Text;
             string email = txtbCriarEmail.Text;
             string senha = txtbCriarSenha.Text;
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(usuario));
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(usuario))
             {
                 MessageBox.Show("Por favor, preencha todos os campos antes de continuar.");
                 return;

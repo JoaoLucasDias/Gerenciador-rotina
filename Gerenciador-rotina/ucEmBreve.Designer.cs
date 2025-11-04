@@ -29,17 +29,33 @@
         private void InitializeComponent()
         {
             this.flpTarefasEmBreve = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpTarefas = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpTarefasEmBreve.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpTarefasEmBreve
             // 
+            this.flpTarefasEmBreve.AllowDrop = true;
             this.flpTarefasEmBreve.AutoScroll = true;
+            this.flpTarefasEmBreve.Controls.Add(this.flpTarefas);
             this.flpTarefasEmBreve.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpTarefasEmBreve.Location = new System.Drawing.Point(0, 0);
             this.flpTarefasEmBreve.Name = "flpTarefasEmBreve";
             this.flpTarefasEmBreve.Size = new System.Drawing.Size(1700, 1061);
             this.flpTarefasEmBreve.TabIndex = 1;
-            this.flpTarefasEmBreve.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTarefasEmBreve_Paint);
+            this.flpTarefasEmBreve.WrapContents = false;
+           
+            // 
+            // flpTarefas
+            // 
+            this.flpTarefas.AutoScroll = true;
+            this.flpTarefas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpTarefas.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpTarefas.Location = new System.Drawing.Point(3, 3);
+            this.flpTarefas.Name = "flpTarefas";
+            this.flpTarefas.Size = new System.Drawing.Size(200, 0);
+            this.flpTarefas.TabIndex = 0;
+            this.flpTarefas.WrapContents = false;
             // 
             // ucEmBreve
             // 
@@ -49,11 +65,13 @@
             this.Name = "ucEmBreve";
             this.Size = new System.Drawing.Size(1700, 1061);
             this.Load += new System.EventHandler(this.ucEmBreve_Load);
+            this.flpTarefasEmBreve.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel flpTarefasEmBreve;
+        private System.Windows.Forms.FlowLayoutPanel flpTarefas;
     }
 }

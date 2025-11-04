@@ -13,9 +13,11 @@ namespace Gerenciador_rotina
 {
     public partial class ucEmBreve : UserControl
     {
+        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
         public ucEmBreve()
         {
             InitializeComponent();
+            this.Load += ucEmBreve_Load;
         }
 
         private void ucEmBreve_Load(object sender, EventArgs e)
@@ -23,149 +25,136 @@ namespace Gerenciador_rotina
             CarregarTarefasEmBreve();
         }
 
-        private void CarregarTarefasEmBreve()
+        public void CarregarTarefasEmBreve()
         {
-            flpTarefasEmBreve.Controls.Clear(); // limpa os cards antigos
+            flpTarefas.Controls.Clear();
 
-            string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                try
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
+
                     string query = @"
-                        SELECT ID, TITULO, DESCRICAO, DATA_TAREFA, status 
-                        FROM tarefa 
-                        WHERE ID_USUARIO = @idUsuario 
-                        AND DATA_TAREFA > GETDATE()
-                        ORDER BY DATA_TAREFA ASC";
+                        SELECT id, titulo, descricao, data_tarefa, status
+                        FROM tarefa
+                        WHERE id_usuario = @id_usuario
+                        AND status <> 'Concluída'
+                        AND CAST(data_tarefa AS DATE) > CAST(GETDATE() AS DATE)
+                        ORDER BY data_tarefa ASC";
 
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@idUsuario", FrmLog.UsuarioLogadoId);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        CriarCardTarefa(
-                            reader["ID"].ToString(),
-                            reader["TITULO"].ToString(),
-                            reader["DESCRICAO"].ToString(),
-                            Convert.ToDateTime(reader["DATA_TAREFA"]),
-                            reader["status"].ToString()
-                        );
+                        cmd.Parameters.AddWithValue("@id_usuario", FrmLog.UsuarioLogadoId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.HasRows)
+                            {
+                                Label lbl = new Label
+                                {
+                                    Text = "Nenhuma tarefa 'Em breve' encontrada!",
+                                    Font = new Font("Segoe UI", 10, FontStyle.Italic),
+                                    ForeColor = Color.Gray,
+                                    AutoSize = true,
+                                    Margin = new Padding(20)
+                                };
+                                flpTarefas.Controls.Add(lbl);
+                                return;
+                            }
+
+                            while (reader.Read())
+                            {
+                                var card = new ucCardTarefa
+                                {
+                                    IdTarefa = Convert.ToInt32(reader["id"]),
+                                    Titulo = reader["titulo"].ToString(),
+                                    Descricao = reader["descricao"].ToString(),
+                                    Status = reader["status"].ToString()
+                                };
+
+                                if (DateTime.TryParse(reader["data_tarefa"].ToString(), out DateTime dt))
+                                    card.DataTarefa = dt;
+
+                                // Ajustes visuais do card
+                                card.Width = Math.Max(300, flpTarefas.ClientSize.Width - 40);
+                                card.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                                card.Margin = new Padding(10);
+
+                                // Subscrição dos eventos (usa closure para capturar IdTarefa)
+                                card.OnDeletarTarefa += (s, ev) => DeletarTarefa(card.IdTarefa);
+                                card.OnConcluirTarefa += (s, ev) => ConcluirTarefa(card.IdTarefa);
+                                card.OnEditarTarefa += (s, ev) => EditarTarefa(card.IdTarefa);
+
+                                flpTarefas.Controls.Add(card);
+                            }
+                        }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao carregar tarefas: " + ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar tarefas: " + ex.Message);
             }
         }
 
-        private void CriarCardTarefa(string id, string titulo, string descricao, DateTime data, string status)
+        private void DeletarTarefa(int id)
         {
-            // Painel principal do card
-            Panel card = new Panel();
-            card.Width = 300;
-            card.Height = 160;
-            card.BackColor = Color.FromArgb(245, 245, 245);
-            card.BorderStyle = BorderStyle.FixedSingle;
-            card.Padding = new Padding(10);
-            card.Margin = new Padding(10);
+            var confirmar = MessageBox.Show("Deseja realmente excluir esta tarefa?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirmar != DialogResult.Yes) return;
 
-            // Título
-            Label lblTitulo = new Label();
-            lblTitulo.Text = titulo;
-            lblTitulo.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            lblTitulo.AutoSize = false;
-            lblTitulo.Dock = DockStyle.Top;
-            lblTitulo.Height = 25;
-
-            // Descrição
-            Label lblDescricao = new Label();
-            lblDescricao.Text = descricao.Length > 60 ? descricao.Substring(0, 60) + "..." : descricao;
-            lblDescricao.Font = new Font("Segoe UI", 9);
-            lblDescricao.ForeColor = Color.Gray;
-            lblDescricao.AutoSize = false;
-            lblDescricao.Height = 50;
-            lblDescricao.Dock = DockStyle.Top;
-
-            // Data
-            Label lblData = new Label();
-            lblData.Text = "📅 " + data.ToString("dd/MM/yyyy");
-            lblData.Font = new Font("Segoe UI", 9, FontStyle.Italic);
-            lblData.ForeColor = Color.FromArgb(80, 80, 80);
-            lblData.Dock = DockStyle.Bottom;
-
-            // Botão "Concluir"
-            Button btnConcluir = new Button();
-            btnConcluir.Text = "✔ Concluir";
-            btnConcluir.BackColor = Color.LightGreen;
-            btnConcluir.FlatStyle = FlatStyle.Flat;
-            btnConcluir.FlatAppearance.BorderSize = 0;
-            btnConcluir.Width = 100;
-            btnConcluir.Height = 30;
-            btnConcluir.Location = new Point(10, 115);
-            btnConcluir.Click += (s, e) => ConcluirTarefa(Convert.ToInt32(id));
-
-            // Botão "Editar"
-            Button btnEditar = new Button();
-            btnEditar.Text = "✏ Editar";
-            btnEditar.BackColor = Color.LightBlue;
-            btnEditar.FlatStyle = FlatStyle.Flat;
-            btnEditar.FlatAppearance.BorderSize = 0;
-            btnEditar.Width = 100;
-            btnEditar.Height = 30;
-            btnEditar.Location = new Point(130, 115);
-            btnEditar.Click += (s, e) => EditarTarefa(Convert.ToInt32(id));
-
-            // Adiciona componentes ao card
-            card.Controls.Add(lblData);
-            card.Controls.Add(btnConcluir);
-            card.Controls.Add(btnEditar);
-            card.Controls.Add(lblDescricao);
-            card.Controls.Add(lblTitulo);
-
-            // Adiciona o card ao FlowLayoutPanel
-            flpTarefasEmBreve.Controls.Add(card);
-        }
-
-        private void ConcluirTarefa(int idTarefa)
-        {
-            string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                string query = "UPDATE tarefa SET status = 'Concluída' WHERE ID = @id";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@id", idTarefa);
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM tarefa WHERE id = @id", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                MessageBox.Show("Tarefa concluída com sucesso!");
+                MessageBox.Show("Tarefa excluída com sucesso!");
                 CarregarTarefasEmBreve();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao deletar tarefa: " + ex.Message);
+            }
         }
 
-        private void EditarTarefa(int idTarefa)
+        private void ConcluirTarefa(int id)
         {
-            MessageBox.Show($"Abrir tela de edição para a tarefa ID: {idTarefa}");
-            // Aqui você pode abrir um pequeno formulário modal para editar o título, descrição e data
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("UPDATE tarefa SET status = 'Concluída' WHERE id = @id", con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Tarefa marcada como concluída!");
+                CarregarTarefasEmBreve();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao concluir tarefa: " + ex.Message);
+            }
         }
-        
 
-        private void dgvEmBreve_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void EditarTarefa(int id)
         {
-
-        }
-
-        private void flpTarefasEmBreve_Paint(object sender, PaintEventArgs e)
-        {
-
+            // Se tiver um formulário de edição, abra aqui. Exemplo básico sem formulário:
+            /*using (FrmEditarTarefa frm = new FrmEditarTarefa(id))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    CarregarTarefasEmBreve();
+            }*/
         }
     }
 }
