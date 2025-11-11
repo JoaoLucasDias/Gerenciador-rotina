@@ -44,7 +44,7 @@
             this.flpTarefasEmBreve.Size = new System.Drawing.Size(1700, 1061);
             this.flpTarefasEmBreve.TabIndex = 1;
             this.flpTarefasEmBreve.WrapContents = false;
-           
+            this.flpTarefasEmBreve.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTarefasEmBreve_Paint);
             // 
             // flpTarefas
             // 

@@ -73,7 +73,7 @@ namespace Gerenciador_rotina
         private void btnEmBreve_Click(object sender, EventArgs e)
         {
             AbrirTela(telaEmBreve);
-            telaEmBreve.CarregarTarefasEmBreve(); // 🔥 Garante que atualiza a lista
+            telaEmBreve.CarregarTarefasEmBreve();
         }
 
         private void btnAdicionarTarefa_Click(object sender, EventArgs e)

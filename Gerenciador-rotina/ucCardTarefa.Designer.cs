@@ -108,12 +108,15 @@
             // 
             // btnExpandir
             // 
+            // btnExpandir
             this.btnExpandir.Location = new System.Drawing.Point(3, 41);
             this.btnExpandir.Name = "btnExpandir";
             this.btnExpandir.Size = new System.Drawing.Size(75, 23);
             this.btnExpandir.TabIndex = 6;
             this.btnExpandir.Text = "Expandir";
             this.btnExpandir.UseVisualStyleBackColor = true;
+            this.btnExpandir.Click += new System.EventHandler(this.btnExpandir_Click);
+
             // 
             // btnConcluir
             // 
@@ -123,6 +126,7 @@
             this.btnConcluir.TabIndex = 5;
             this.btnConcluir.Text = "CONCLUIR";
             this.btnConcluir.UseVisualStyleBackColor = true;
+            this.btnConcluir.Click += new System.EventHandler(this.btnConcluir_Click);
             // 
             // btnDeletar
             // 
@@ -132,6 +136,7 @@
             this.btnDeletar.TabIndex = 4;
             this.btnDeletar.Text = "DELETAR";
             this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // btnEditar
             // 
@@ -141,6 +146,7 @@
             this.btnEditar.TabIndex = 3;
             this.btnEditar.Text = "EDITAR";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // lblFaltam
             // 

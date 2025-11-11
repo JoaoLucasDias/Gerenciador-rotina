@@ -17,6 +17,7 @@ namespace Gerenciador_rotina
         public event EventHandler OnEditarTarefa;
 
         private bool expandido = false;
+        private DateTime _dataTarefa; // Campo de suporte para armazenar a data com segurança
 
         // Propriedades públicas para configurar o card
         public int IdTarefa { get; set; }
@@ -35,24 +36,31 @@ namespace Gerenciador_rotina
 
         public DateTime DataTarefa
         {
-            get
-            {
-                DateTime.TryParse(lblData.Text, out DateTime data);
-                return data;
-            }
+            get => _dataTarefa; // Retorna o valor seguro armazenado
             set
             {
+                _dataTarefa = value;
                 lblData.Text = value.ToShortDateString();
-                AtualizarDiasRestantes(value);
+                AtualizarDiasRestantes(value); // Atualiza o rótulo de dias restantes
             }
         }
 
         public string Status { get; set; }
+
         public ucCardTarefa()
         {
             InitializeComponent();
             pnlDescricao.Visible = false;
+            // Configuração visual padrão para melhor leitura
+            this.BorderStyle = BorderStyle.FixedSingle;
+            this.BackColor = Color.WhiteSmoke;
         }
+
+        private void ucCardTarefa_Load(object sender, EventArgs e)
+        {
+            // O código do construtor já está tratando o visual
+        }
+
         private void btnExpandir_Click(object sender, EventArgs e)
         {
             expandido = !expandido;
@@ -84,41 +92,29 @@ namespace Gerenciador_rotina
         // Atualiza o texto de “faltam X dias”
         private void AtualizarDiasRestantes(DateTime dataTarefa)
         {
-            int diasRestantes = (dataTarefa - DateTime.Now).Days;
+            // Pega a data de hoje sem a componente de hora
+            DateTime hoje = DateTime.Today;
+
+            // Calcula a diferença em dias (considerando apenas a data)
+            TimeSpan diferenca = dataTarefa.Date - hoje;
+            int diasRestantes = (int)diferenca.TotalDays;
 
             if (diasRestantes > 0)
                 lblFaltam.Text = $"Faltam {diasRestantes} dias";
             else if (diasRestantes == 0)
-                lblFaltam.Text = "É hoje!";
+                lblFaltam.Text = "É hoje!"; // Esta tarefa seria vista na tela 'Hoje'
             else
+            {
+                // Embora esta tela seja 'Em Breve' (> GETDATE()), 
+                // é bom ter a condição de atrasada por segurança.
                 lblFaltam.Text = "Tarefa atrasada!";
+            }
         }
 
-        // (opcional) deixa o card mais bonito visualmente
-        private void ucCardTarefa_Load(object sender, EventArgs e)
-        {
-            this.BorderStyle = BorderStyle.FixedSingle;
-            this.BackColor = Color.WhiteSmoke;
-        }
-
-        private void pnlTopo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblFaltam_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblData_Click(object sender, EventArgs e)
-        {
-
-        }
+        // Métodos de eventos vazios (mantidos por compatibilidade com o designer)
+        private void pnlTopo_Paint(object sender, PaintEventArgs e) { }
+        private void lblFaltam_Click(object sender, EventArgs e) { }
+        private void lblTitulo_Click(object sender, EventArgs e) { }
+        private void lblData_Click(object sender, EventArgs e) { }
     }
 }
