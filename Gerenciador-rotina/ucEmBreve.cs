@@ -13,24 +13,22 @@ namespace Gerenciador_rotina
 {
     public partial class ucEmBreve : UserControl
     {
-        // Conexão mais limpa, baseada no nome da instância 'SQLEXPRESS'.
-        private string connectionString = @"Data Source=SQLEXPRESS;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
+        // Certifique-se de que esta string de conexão está correta.
+        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
 
         public ucEmBreve()
         {
             InitializeComponent();
         }
 
-        private void ucEmBreve_Load(object sender, EventArgs e)
-        {
-            // A chamada deve ser feita pelo FrmTelaInicial
-        }
-
         public void CarregarTarefasEmBreve()
         {
+            // Limpa o painel antes de carregar novos dados
             flpTarefas.Controls.Clear();
+            // ID de usuário fixo para teste, mas deve ser substituído pelo ID do usuário logado.
+            int idUsuario = 3;
 
-            // Função auxiliar para lidar com valores DBNull e evitar crashes
+            // Função auxiliar para lidar com valores DBNull e evitar crashes.
             Func<SqlDataReader, string, string> safeGetString = (reader, colName) =>
             {
                 int colIndex = reader.GetOrdinal(colName);
@@ -41,24 +39,18 @@ namespace Gerenciador_rotina
 
             try
             {
-                // *** ID FORÇADO PARA TESTE ***
-                int idUsuario = 3;
-
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    // Tenta abrir a conexão.
                     con.Open();
 
-                    // Se a conexão abrir, este log aparece na Janela de Saída do Visual Studio
-                    System.Diagnostics.Debug.WriteLine("DEBUG: Conexão SQL aberta com sucesso!");
-
-                    // MUDANÇA: Query de TESTE: BUSCA QUALQUER TAREFA (PENDENTE OU CONCLUÍDA) do ID 3
+                    // Query: Seleciona tarefas PENDENTES, do usuário logado e com data no FUTURO.
                     string query = @"
-                        SELECT id, titulo, descricao, data_tarefa, status
+                        SELECT id, titulo, descricao, data_tarefa, STATUS
                         FROM tarefa
-                        WHERE id_usuario = @id_usuario
-                        ORDER BY data_tarefa ASC"; // Removida a condição de status
-
+                        WHERE ID_USUARIO = @id_usuario
+                        AND STATUS = 'Pendente' 
+                        AND data_tarefa > GETDATE()
+                        ORDER BY data_tarefa ASC";
 
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -68,54 +60,62 @@ namespace Gerenciador_rotina
                         {
                             if (!reader.HasRows)
                             {
+                                // Mensagem de que não há tarefas futuras, se for o caso.
                                 Label lbl = new Label
                                 {
-                                    // Mensagem em vermelho de DEBUG para saber se a conexão abriu
-                                    Text = "DEBUG: Conexão OK, mas nenhuma tarefa foi encontrada para o ID 3 (Adicione uma tarefa no DB)",
-                                    Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                                    ForeColor = Color.Red,
+                                    Text = $"Nenhuma tarefa PENDENTE com data futura encontrada para o ID {idUsuario}.",
+                                    Font = new Font("Segoe UI", 14, FontStyle.Italic),
+                                    ForeColor = Color.Gray,
                                     AutoSize = true,
                                     Margin = new Padding(20)
                                 };
                                 flpTarefas.Controls.Add(lbl);
                             }
 
-                            while (reader.Read()) // 🛑 COLOQUE O BREAKPOINT AQUI
+                            while (reader.Read())
                             {
-                                var card = new ucCardTarefa
-                                {
-                                    IdTarefa = reader.GetInt32(reader.GetOrdinal("id")),
-                                    Titulo = safeGetString(reader, "titulo"),
-                                    Descricao = safeGetString(reader, "descricao"),
-                                    Status = safeGetString(reader, "status")
-                                };
-
-                                // TRATAMENTO DE DATA: Evita quebra se a data estiver nula ou inválida
-                                DateTime dataLida = DateTime.Today.AddDays(1); // Valor padrão de fallback
                                 try
                                 {
-                                    // Tenta obter a data; se for DBNull, a exceção é pega e o fallback é usado.
+                                    var card = new ucCardTarefa();
+
+                                    // Atribuição de propriedades
+                                    card.IdTarefa = reader.GetInt32(reader.GetOrdinal("id"));
+                                    card.Titulo = safeGetString(reader, "titulo");
+                                    card.Descricao = safeGetString(reader, "descricao");
+                                    card.Status = safeGetString(reader, "STATUS");
+
+                                    // Tratamento de Data
+                                    DateTime dataLida = DateTime.Today;
                                     if (reader["data_tarefa"] != DBNull.Value)
                                     {
                                         dataLida = reader.GetDateTime(reader.GetOrdinal("data_tarefa"));
                                     }
+                                    card.DataTarefa = dataLida;
+
+                                    // Configurações de layout (CRÍTICO para exibição correta)
+                                    // Garante que o card preencha a largura do FlowLayoutPanel, 
+                                    // subtraindo um pouco para margem/padding.
+                                    card.Width = flpTarefas.ClientSize.Width - 25;
+                                    card.Margin = new Padding(5, 5, 5, 10);
+
+                                    // Ligações de Eventos (para que os botões funcionem)
+                                    // NOTA: É importante que os métodos DeletarTarefa, ConcluirTarefa e EditarTarefa
+                                    // existam na sua classe ucCardTarefa para que estas ligações funcionem.
+                                    card.OnDeletarTarefa += (s, ev) => DeletarTarefa(card.IdTarefa);
+                                    card.OnConcluirTarefa += (s, ev) => ConcluirTarefa(card.IdTarefa);
+                                    card.OnEditarTarefa += (s, ev) => EditarTarefa(card.IdTarefa);
+
+                                    // Adiciona o Card ao painel
+                                    flpTarefas.Controls.Add(card);
+
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-                                    // Ignora exceções de conversão (se o tipo da coluna estiver errado) e usa o fallback.
-                                    dataLida = DateTime.Today.AddDays(1);
+                                    // Exibe um erro claro se o problema for na criação do card
+                                    MessageBox.Show("Erro CRÍTICO ao processar e exibir um Card! Verifique se a classe ucCardTarefa está completa (propriedades e métodos) ou se o nome das colunas está correto no SELECT.\nDetalhes: " + ex.Message, "Erro de Renderização", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    // Interrompe o loop após o primeiro erro para evitar mais problemas
+                                    break;
                                 }
-
-                                card.DataTarefa = dataLida; // Atribui a data (lida ou fallback)
-
-                                card.Width = Math.Max(300, flpTarefas.ClientSize.Width - 10);
-                                card.Margin = new Padding(5, 5, 5, 10);
-
-                                card.OnDeletarTarefa += (s, ev) => DeletarTarefa(card.IdTarefa);
-                                card.OnConcluirTarefa += (s, ev) => ConcluirTarefa(card.IdTarefa);
-                                card.OnEditarTarefa += (s, ev) => EditarTarefa(card.IdTarefa);
-
-                                flpTarefas.Controls.Add(card);
                             }
                         }
                     }
@@ -123,17 +123,25 @@ namespace Gerenciador_rotina
             }
             catch (Exception ex)
             {
-                // Se esta caixa de erro aparecer, o nome do servidor ainda está incorreto!
-                MessageBox.Show("ERRO CRÍTICO DE CONEXÃO. Por favor, verifique se o nome do servidor SQL é 'SQLEXPRESS' (sem ponto). Detalhes: " + ex.Message, "Erro de Conexão SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Este bloco captura qualquer erro de conexão ou de SQL que possa ter ocorrido.
+                flpTarefas.Controls.Clear();
+                MessageBox.Show(
+                    "Erro de Conexão ou Execução SQL. Verifique se o servidor está ativo.\n\nDetalhes: " + ex.Message,
+                    "Erro Crítico",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
             finally
             {
+                // Força o FlowLayoutPanel a redesenhar para garantir que o conteúdo seja exibido
                 flpTarefas.PerformLayout();
                 flpTarefas.Refresh();
             }
         }
 
-        // Métodos DeletarTarefa, ConcluirTarefa e EditarTarefa (não alterados)
+        // --- Implementação dos Métodos de Ação ---
+
         private void DeletarTarefa(int id)
         {
             var confirmar = MessageBox.Show("Deseja realmente excluir esta tarefa?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -150,9 +158,8 @@ namespace Gerenciador_rotina
                         cmd.ExecuteNonQuery();
                     }
                 }
-
                 MessageBox.Show("Tarefa excluída com sucesso!");
-                CarregarTarefasEmBreve();
+                CarregarTarefasEmBreve(); // Recarrega a lista
             }
             catch (Exception ex)
             {
@@ -167,7 +174,7 @@ namespace Gerenciador_rotina
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE tarefa SET status = 'Concluída' WHERE id = @id", con))
+                    using (SqlCommand cmd = new SqlCommand("UPDATE tarefa SET STATUS = 'Concluída' WHERE id = @id", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
@@ -175,7 +182,7 @@ namespace Gerenciador_rotina
                 }
 
                 MessageBox.Show("Tarefa marcada como concluída!");
-                CarregarTarefasEmBreve();
+                CarregarTarefasEmBreve(); // Recarrega a lista
             }
             catch (Exception ex)
             {
@@ -185,12 +192,18 @@ namespace Gerenciador_rotina
 
         private void EditarTarefa(int id)
         {
-            // O código de edição deve ser implementado aqui.
+            // O código de edição deve ser implementado aqui, 
+            // talvez abrindo um novo formulário com os dados da tarefa para edição.
         }
 
-        private void flpTarefasEmBreve_Paint(object sender, PaintEventArgs e)
+        private void ucEmBreve_Load(object sender, EventArgs e)
         {
-            // Método de Paint não precisa de código
+            // O carregamento é feito via FrmTelaInicial
+        }
+
+        private void ucEmBreve_Load_1(object sender, EventArgs e)
+        {
+        }
+            
         }
     }
-}

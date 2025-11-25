@@ -12,15 +12,7 @@ namespace Gerenciador_rotina
 {
     public partial class FrmTelaInicial : Form
     {
-        public FrmTelaInicial()
-        {
-            InitializeComponent();
-
-
-         
-
-
-        }
+        // Campos para armazenar as instâncias únicas dos UserControls
         private ucHoje telaHoje;
         private ucEmBreve telaEmBreve;
         private ucAdicionarTarefa telaAdicionar;
@@ -28,10 +20,14 @@ namespace Gerenciador_rotina
         private ucConcluido telaConcluido;
         private ucEstatisticas telaEstatisticas;
 
-
+        public FrmTelaInicial()
+        {
+            InitializeComponent();
+        }
 
         private void FrmTelaInicial_Load(object sender, EventArgs e)
         {
+            // Inicializa as instâncias dos UserControls UMA VEZ ao carregar o formulário
             telaHoje = new ucHoje();
             telaEmBreve = new ucEmBreve();
             telaAdicionar = new ucAdicionarTarefa();
@@ -42,37 +38,51 @@ namespace Gerenciador_rotina
             // Exibe a tela "Hoje" por padrão
             AbrirTela(telaHoje);
         }
+
         private void AbrirTela(UserControl tela)
         {
-            pnlConteudo.Controls.Clear(); // Limpa o conteúdo atual
-            tela.Dock = DockStyle.Fill;   // Faz ocupar todo o painel
+            // O pnlConteudo precisa ser um painel existente no seu formulário
+
+            // 1. Limpa todos os controles existentes no painel
+            pnlConteudo.Controls.Clear();
+
+            // 2. Define o tamanho e ancoragem do novo UserControl
+            tela.Dock = DockStyle.Fill;
+
+            // 3. Adiciona o UserControl ao painel
+            // É neste momento que o InitializeComponent() do UserControl é garantido.
             pnlConteudo.Controls.Add(tela);
         }
 
-
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-
+            // Implementação do Calendar
         }
-
 
         private void pnlMenu_Paint(object sender, PaintEventArgs e)
         {
-
+            // Implementação do Paint
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            // Implementação do Click
         }
+
         private void btnHoje_Click(object sender, EventArgs e)
         {
             AbrirTela(telaHoje);
+            // Se 'ucHoje' precisar de carregamento de dados, adicione: 
+            // telaHoje.CarregarTarefasHoje();
         }
 
         private void btnEmBreve_Click(object sender, EventArgs e)
         {
+            // 1. Reutiliza a instância existente
             AbrirTela(telaEmBreve);
+
+            // 2. Chama o método de carregamento de dados (RESOLVE O NULLREFERENCEEXCEPTION)
+            // A chamada acontece DEPOIS que a tela (com seus componentes internos) é adicionada ao Form pai.
             telaEmBreve.CarregarTarefasEmBreve();
         }
 
@@ -98,9 +108,7 @@ namespace Gerenciador_rotina
 
         private void pnlConteudo_Paint(object sender, PaintEventArgs e)
         {
-
+            // Implementação do Paint
         }
     }
 }
-    
-

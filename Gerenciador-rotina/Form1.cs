@@ -107,5 +107,10 @@ VALUES
                 }
             }
         }
+
+        private void txtbLogSenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
