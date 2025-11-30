@@ -12,9 +12,16 @@ namespace Gerenciador_rotina
 {
     public partial class ucBuscar : UserControl
     {
+        public int IdUsuarioLogado { get; set; }
+
         public ucBuscar()
         {
             InitializeComponent();
+        }
+
+        private void ucBuscar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

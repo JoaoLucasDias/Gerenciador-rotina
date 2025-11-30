@@ -84,6 +84,7 @@
             this.Controls.Add(this.btnAlterarSenha);
             this.Name = "FrmForgot2";
             this.Text = "FrmForgot2";
+            this.Load += new System.EventHandler(this.FrmForgot2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

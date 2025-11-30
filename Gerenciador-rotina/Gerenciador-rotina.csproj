@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,6 +98,18 @@
     <Compile Include="ucBuscar.Designer.cs">
       <DependentUpon>ucBuscar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucCardConcluido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCardConcluido.Designer.cs">
+      <DependentUpon>ucCardConcluido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucCardHoje.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCardHoje.Designer.cs">
+      <DependentUpon>ucCardHoje.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucCardTarefa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,11 +171,26 @@
     <EmbeddedResource Include="ucAdicionarTarefa.resx">
       <DependentUpon>ucAdicionarTarefa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucBuscar.resx">
+      <DependentUpon>ucBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCardConcluido.resx">
+      <DependentUpon>ucCardConcluido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCardHoje.resx">
+      <DependentUpon>ucCardHoje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucCardTarefa.resx">
       <DependentUpon>ucCardTarefa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucConcluido.resx">
+      <DependentUpon>ucConcluido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucEmBreve.resx">
       <DependentUpon>ucEmBreve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucEstatisticas.resx">
+      <DependentUpon>ucEstatisticas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucHoje.resx">
       <DependentUpon>ucHoje.cs</DependentUpon>

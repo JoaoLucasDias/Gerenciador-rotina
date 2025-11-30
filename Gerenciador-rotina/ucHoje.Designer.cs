@@ -28,19 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flpHoje = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
+            // 
+            // flpHoje
+            // 
+            this.flpHoje.AutoScroll = true;
+            this.flpHoje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpHoje.Location = new System.Drawing.Point(0, 0);
+            this.flpHoje.Name = "flpHoje";
+            this.flpHoje.Size = new System.Drawing.Size(150, 150);
+            this.flpHoje.TabIndex = 0;
+            //this.flpHoje.Paint += new System.Windows.Forms.PaintEventHandler(this.flpHoje_Paint);
             // 
             // ucHoje
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flpHoje);
             this.Name = "ucHoje";
-            this.Size = new System.Drawing.Size(145, 139);
-            this.Load += new System.EventHandler(this.usHoje_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel flpHoje;
     }
 }

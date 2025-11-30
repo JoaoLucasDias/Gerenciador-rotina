@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ucBuscar
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "ucBuscar";
+            this.Size = new System.Drawing.Size(517, 380);
+            this.Load += new System.EventHandler(this.ucBuscar_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

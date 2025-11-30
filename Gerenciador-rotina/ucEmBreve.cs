@@ -7,115 +7,112 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using System.Data.SqlClient; // Adicionado para operações de banco de dados
 
 namespace Gerenciador_rotina
 {
     public partial class ucEmBreve : UserControl
     {
-        // Certifique-se de que esta string de conexão está correta.
-        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
+        // 1. PROPRIEDADE PÚBLICA CORRIGIDA
+        public int IdUsuarioLogado { get; set; }
+
+        // Sua string de conexão (certifique-se de que está correta)
+        private string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
 
         public ucEmBreve()
         {
             InitializeComponent();
         }
 
-        public void CarregarTarefasEmBreve()
+        // Lógica para marcar a tarefa como concluída no BD
+        private void Card_OnConcluirTarefa(object sender, EventArgs e)
         {
-            // Limpa o painel antes de carregar novos dados
-            flpTarefas.Controls.Clear();
-            // ID de usuário fixo para teste, mas deve ser substituído pelo ID do usuário logado.
-            int idUsuario = 3;
-
-            // Função auxiliar para lidar com valores DBNull e evitar crashes.
-            Func<SqlDataReader, string, string> safeGetString = (reader, colName) =>
-            {
-                int colIndex = reader.GetOrdinal(colName);
-                if (reader.IsDBNull(colIndex))
-                    return string.Empty;
-                return reader.GetString(colIndex);
-            };
+            ucCardTarefa card = sender as ucCardTarefa;
+            if (card == null) return;
 
             try
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    con.Open();
-
-                    // Query: Seleciona tarefas PENDENTES, do usuário logado e com data no FUTURO.
-                    string query = @"
-                        SELECT id, titulo, descricao, data_tarefa, STATUS
-                        FROM tarefa
-                        WHERE ID_USUARIO = @id_usuario
-                        AND STATUS = 'Pendente' 
-                        AND data_tarefa > GETDATE()
-                        ORDER BY data_tarefa ASC";
-
+                    // Query para mudar o status da tarefa para 'Concluída'
+                    string query = "UPDATE TAREFA SET STATUS = 'Concluída' WHERE ID = @ID_TAREFA AND ID_USUARIO = @ID_USUARIO";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@id_usuario", idUsuario);
+                        cmd.Parameters.AddWithValue("@ID_TAREFA", card.IdTarefa);
+                        cmd.Parameters.AddWithValue("@ID_USUARIO", IdUsuarioLogado);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
 
+                        MessageBox.Show("Tarefa concluída com sucesso!", "Parabéns!");
+
+                        // 💥 RECARREGA A LISTA: Isso fará com que a tarefa desapareça da tela atual
+                        CarregarTarefasEmBreve();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao concluir tarefa: {ex.Message}", "Erro de Banco de Dados");
+            }
+        }
+
+        public void CarregarTarefasEmBreve()
+        {
+            // PONTO CRÍTICO CORRIGIDO: O flpTarefas DEVE existir no designer.
+            // Certifique-se de que o FlowLayoutPanel no designer se chama 'flpTarefas'.
+            // (Assumindo que flpTarefas foi declarado no seu designer.cs)
+            // if (flpTarefas == null) { /* ... (mensagem de erro) ... */ return; }
+
+            // Limpa o painel antes de carregar novos dados
+            flpTarefas.Controls.Clear();
+
+            // Variável Local 
+            int idUsuario = IdUsuarioLogado; // Usa a propriedade pública
+
+            // SQL para selecionar tarefas que não estão concluídas e estão no futuro
+            string query = "SELECT ID, TITULO, DESCRICAO, DATA_TAREFA, STATUS, ID_CATEGORIA FROM TAREFA " +
+                           "WHERE ID_USUARIO = @ID_USUARIO AND STATUS = 'Pendente' AND DATA_TAREFA > GETDATE() " +
+                           "ORDER BY DATA_TAREFA ASC";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ID_USUARIO", idUsuario);
+
+                        con.Open();
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (!reader.HasRows)
-                            {
-                                // Mensagem de que não há tarefas futuras, se for o caso.
-                                Label lbl = new Label
-                                {
-                                    Text = $"Nenhuma tarefa PENDENTE com data futura encontrada para o ID {idUsuario}.",
-                                    Font = new Font("Segoe UI", 14, FontStyle.Italic),
-                                    ForeColor = Color.Gray,
-                                    AutoSize = true,
-                                    Margin = new Padding(20)
-                                };
-                                flpTarefas.Controls.Add(lbl);
-                            }
-
                             while (reader.Read())
                             {
-                                try
-                                {
-                                    var card = new ucCardTarefa();
+                                // Cria o Card de Tarefa
+                                ucCardTarefa card = new ucCardTarefa();
 
-                                    // Atribuição de propriedades
-                                    card.IdTarefa = reader.GetInt32(reader.GetOrdinal("id"));
-                                    card.Titulo = safeGetString(reader, "titulo");
-                                    card.Descricao = safeGetString(reader, "descricao");
-                                    card.Status = safeGetString(reader, "STATUS");
+                                // Preenche as propriedades do Card, usando GetStringSafe para DESCRICAO
+                                card.IdTarefa = reader.GetInt32(reader.GetOrdinal("ID"));
+                                card.Titulo = GetStringSafe(reader, "TITULO");
+                                card.Descricao = GetStringSafe(reader, "DESCRICAO");
+                                card.DataTarefa = reader.GetDateTime(reader.GetOrdinal("DATA_TAREFA"));
+                                // card.Status = reader.GetString(reader.GetOrdinal("STATUS")); // Não necessário se o status é fixo
 
-                                    // Tratamento de Data
-                                    DateTime dataLida = DateTime.Today;
-                                    if (reader["data_tarefa"] != DBNull.Value)
-                                    {
-                                        dataLida = reader.GetDateTime(reader.GetOrdinal("data_tarefa"));
-                                    }
-                                    card.DataTarefa = dataLida;
+                                // 🔑 CONEXÃO DO EVENTO: Quando o botão Concluir no card for clicado, 
+                                // ele chamará Card_OnConcluirTarefa, que atualiza o BD e recarrega a lista.
+                                card.OnConcluirTarefa += Card_OnConcluirTarefa;
 
-                                    // Configurações de layout (CRÍTICO para exibição correta)
-                                    // Garante que o card preencha a largura do FlowLayoutPanel, 
-                                    // subtraindo um pouco para margem/padding.
-                                    card.Width = flpTarefas.ClientSize.Width - 25;
-                                    card.Margin = new Padding(5, 5, 5, 10);
+                                // Adiciona o card ao painel
+                                flpTarefas.Controls.Add(card);
+                            }
 
-                                    // Ligações de Eventos (para que os botões funcionem)
-                                    // NOTA: É importante que os métodos DeletarTarefa, ConcluirTarefa e EditarTarefa
-                                    // existam na sua classe ucCardTarefa para que estas ligações funcionem.
-                                    card.OnDeletarTarefa += (s, ev) => DeletarTarefa(card.IdTarefa);
-                                    card.OnConcluirTarefa += (s, ev) => ConcluirTarefa(card.IdTarefa);
-                                    card.OnEditarTarefa += (s, ev) => EditarTarefa(card.IdTarefa);
-
-                                    // Adiciona o Card ao painel
-                                    flpTarefas.Controls.Add(card);
-
-                                }
-                                catch (Exception ex)
-                                {
-                                    // Exibe um erro claro se o problema for na criação do card
-                                    MessageBox.Show("Erro CRÍTICO ao processar e exibir um Card! Verifique se a classe ucCardTarefa está completa (propriedades e métodos) ou se o nome das colunas está correto no SELECT.\nDetalhes: " + ex.Message, "Erro de Renderização", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                    // Interrompe o loop após o primeiro erro para evitar mais problemas
-                                    break;
-                                }
+                            // Adiciona uma mensagem se não houver tarefas
+                            if (flpTarefas.Controls.Count == 0)
+                            {
+                                Label lbl = new Label();
+                                lbl.Text = "Nenhuma tarefa 'Em Breve' encontrada. Que tal adicionar uma?";
+                                lbl.AutoSize = true;
+                                lbl.Font = new Font(lbl.Font.FontFamily, 12, FontStyle.Italic);
+                                flpTarefas.Controls.Add(lbl);
                             }
                         }
                     }
@@ -123,87 +120,24 @@ namespace Gerenciador_rotina
             }
             catch (Exception ex)
             {
-                // Este bloco captura qualquer erro de conexão ou de SQL que possa ter ocorrido.
-                flpTarefas.Controls.Clear();
-                MessageBox.Show(
-                    "Erro de Conexão ou Execução SQL. Verifique se o servidor está ativo.\n\nDetalhes: " + ex.Message,
-                    "Erro Crítico",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-            finally
-            {
-                // Força o FlowLayoutPanel a redesenhar para garantir que o conteúdo seja exibido
-                flpTarefas.PerformLayout();
-                flpTarefas.Refresh();
+                // Exibe o erro de forma mais amigável
+                MessageBox.Show($"Erro ao carregar tarefas 'Em Breve': {ex.Message}", "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // --- Implementação dos Métodos de Ação ---
-
-        private void DeletarTarefa(int id)
+        // Função auxiliar para lidar com valores DBNull e evitar crashes (MUITO IMPORTANTE)
+        private string GetStringSafe(SqlDataReader reader, string colName)
         {
-            var confirmar = MessageBox.Show("Deseja realmente excluir esta tarefa?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirmar != DialogResult.Yes) return;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("DELETE FROM tarefa WHERE id = @id", con))
-                    {
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                MessageBox.Show("Tarefa excluída com sucesso!");
-                CarregarTarefasEmBreve(); // Recarrega a lista
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao deletar tarefa: " + ex.Message);
-            }
+            int colIndex = reader.GetOrdinal(colName);
+            // Verifica se o valor é nulo no banco de dados
+            if (reader.IsDBNull(colIndex))
+                return string.Empty; // Retorna string vazia em caso de NULL
+            return reader.GetString(colIndex);
         }
 
-        private void ConcluirTarefa(int id)
-        {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE tarefa SET STATUS = 'Concluída' WHERE id = @id", con))
-                    {
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+        // Evento de carregamento do UserControl (manter vazio)
+        private void ucEmBreve_Load(object sender, EventArgs e) { }
 
-                MessageBox.Show("Tarefa marcada como concluída!");
-                CarregarTarefasEmBreve(); // Recarrega a lista
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao concluir tarefa: " + ex.Message);
-            }
-        }
-
-        private void EditarTarefa(int id)
-        {
-            // O código de edição deve ser implementado aqui, 
-            // talvez abrindo um novo formulário com os dados da tarefa para edição.
-        }
-
-        private void ucEmBreve_Load(object sender, EventArgs e)
-        {
-            // O carregamento é feito via FrmTelaInicial
-        }
-
-        private void ucEmBreve_Load_1(object sender, EventArgs e)
-        {
-        }
-            
-        }
+        private void flpTarefas_Paint(object sender, PaintEventArgs e) { }
     }
+}

@@ -19,7 +19,7 @@ namespace Gerenciador_rotina
 {
     public partial class FrmCreate : Form
     {
-        string connectionString = "Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
+        string connectionString = "Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
         public FrmCreate()
         {
             InitializeComponent();

@@ -12,22 +12,30 @@ namespace Gerenciador_rotina
 {
     public partial class FrmTelaInicial : Form
     {
-        // Campos para armazenar as instâncias únicas dos UserControls
+       
+        private int _idUsuarioLogado;
+
+  
         private ucHoje telaHoje;
         private ucEmBreve telaEmBreve;
-        private ucAdicionarTarefa telaAdicionar;
+        private ucAdicionarTarefa telaAdicionar; 
         private ucBuscar telaBuscar;
         private ucConcluido telaConcluido;
         private ucEstatisticas telaEstatisticas;
 
-        public FrmTelaInicial()
+       
+        private UserControl telaAtual;
+
+       
+        public FrmTelaInicial(int idUsuario)
         {
             InitializeComponent();
+            _idUsuarioLogado = idUsuario;
         }
 
         private void FrmTelaInicial_Load(object sender, EventArgs e)
         {
-            // Inicializa as instâncias dos UserControls UMA VEZ ao carregar o formulário
+          
             telaHoje = new ucHoje();
             telaEmBreve = new ucEmBreve();
             telaAdicionar = new ucAdicionarTarefa();
@@ -35,24 +43,111 @@ namespace Gerenciador_rotina
             telaConcluido = new ucConcluido();
             telaEstatisticas = new ucEstatisticas();
 
-            // Exibe a tela "Hoje" por padrão
+     
+            telaHoje.IdUsuarioLogado = _idUsuarioLogado;
+            telaEmBreve.IdUsuarioLogado = _idUsuarioLogado;
+            telaBuscar.IdUsuarioLogado = _idUsuarioLogado;
+            telaConcluido.IdUsuarioLogado = _idUsuarioLogado;
+      ;
+            telaEstatisticas.IdUsuarioLogado = _idUsuarioLogado;
+
+          
             AbrirTela(telaHoje);
+
+          
+            telaHoje.CarregarTarefasHoje();
         }
 
-        private void AbrirTela(UserControl tela)
+       
+        private void AbrirTela(UserControl novaTela)
         {
-            // O pnlConteudo precisa ser um painel existente no seu formulário
+            // Verifica se o painel de conteúdo existe (usando o nome 'pnlConteudo' do seu código anterior)
+            // Se o nome no seu designer for diferente (ex: pnlPrincipal), você DEVE renomear pnlConteudo abaixo.
+            if (pnlConteudo == null)
+            {
+                // Em um projeto real, pnlConteudo deve ser um painel no seu designer.
+                MessageBox.Show("ERRO: O painel 'pnlConteudo' não foi encontrado. Verifique o nome no Designer.", "Erro de Componente");
+                return;
+            }
 
-            // 1. Limpa todos os controles existentes no painel
-            pnlConteudo.Controls.Clear();
+            // Remove a tela anterior (UserControl)
+            if (telaAtual != null)
+            {
+                pnlConteudo.Controls.Remove(telaAtual);
+            }
 
-            // 2. Define o tamanho e ancoragem do novo UserControl
-            tela.Dock = DockStyle.Fill;
-
-            // 3. Adiciona o UserControl ao painel
-            // É neste momento que o InitializeComponent() do UserControl é garantido.
-            pnlConteudo.Controls.Add(tela);
+            // Configura e adiciona a nova tela
+            novaTela.Dock = DockStyle.Fill;
+            pnlConteudo.Controls.Add(novaTela);
+            telaAtual = novaTela; // Define a nova tela atual
         }
+
+        /* ------------------------------------------------------------------ */
+        /* IMPLEMENTAÇÃO DOS BOTÕES                                           */
+        /* ------------------------------------------------------------------ */
+
+        private void btnHoje_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaHoje);
+            // Chama o método de carregamento, que agora existe no ucHoje.cs
+            telaHoje.CarregarTarefasHoje();
+        }
+
+        private void btnEmBreve_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaEmBreve);
+            // Chama o método de carregamento, que agora existe no ucEmBreve.cs
+            telaEmBreve.CarregarTarefasEmBreve();
+        }
+
+        private void btnConcluido_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaConcluido);
+            // Chama o método de carregamento, que agora deve existir no ucConcluido.cs
+            telaConcluido.CarregarTarefasConcluidas();
+        }
+
+        private void btnAdicionarTarefa_Click(object sender, EventArgs e)
+        {
+            // Se ucAdicionarTarefa é um UserControl, você o abre no painel
+           
+            if (telaAdicionar == null)
+            {
+                telaAdicionar = new ucAdicionarTarefa();
+            }
+
+            telaAdicionar.IdUsuarioLogado = _idUsuarioLogado; // <<<< VOCÊ PRECISA TER ID_UsuarioLogado NA FrmTelaInicial
+
+            // 3. Abre a tela
+            AbrirTela(telaAdicionar);
+
+
+            // **OPCIONAL:** Se for um FORM de popup (FrmAdicionar), use o código abaixo:
+            // FrmAdicionar formAdicionar = new FrmAdicionar(_idUsuarioLogado);
+            // formAdicionar.ShowDialog();
+            // Após fechar o form, recarrega a tela atual para atualizar a lista:
+            // if (telaAtual == telaHoje) { telaHoje.CarregarTarefasHoje(); }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaBuscar);
+        }
+
+        private void btnEstatistica_Click(object sender, EventArgs e)
+        {
+            AbrirTela(telaEstatisticas);
+            // 🆕 Chamada para carregar os dados de estatística
+            telaEstatisticas.CarregarEstatisticas();
+            telaEstatisticas.IdUsuarioLogado = _idUsuarioLogado;
+
+            // 🔑 PASSO CRÍTICO 2: Manda o controle carregar os dados
+           
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* EVENTOS DO DESIGNER (Vazios para compatibilidade)                  */
+        /* ------------------------------------------------------------------ */
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -67,43 +162,6 @@ namespace Gerenciador_rotina
         private void button1_Click_1(object sender, EventArgs e)
         {
             // Implementação do Click
-        }
-
-        private void btnHoje_Click(object sender, EventArgs e)
-        {
-            AbrirTela(telaHoje);
-            // Se 'ucHoje' precisar de carregamento de dados, adicione: 
-            // telaHoje.CarregarTarefasHoje();
-        }
-
-        private void btnEmBreve_Click(object sender, EventArgs e)
-        {
-            // 1. Reutiliza a instância existente
-            AbrirTela(telaEmBreve);
-
-            // 2. Chama o método de carregamento de dados (RESOLVE O NULLREFERENCEEXCEPTION)
-            // A chamada acontece DEPOIS que a tela (com seus componentes internos) é adicionada ao Form pai.
-            telaEmBreve.CarregarTarefasEmBreve();
-        }
-
-        private void btnAdicionarTarefa_Click(object sender, EventArgs e)
-        {
-            AbrirTela(telaAdicionar);
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            AbrirTela(telaBuscar);
-        }
-
-        private void btnConcluido_Click(object sender, EventArgs e)
-        {
-            AbrirTela(telaConcluido);
-        }
-
-        private void btnEstatistica_Click(object sender, EventArgs e)
-        {
-            AbrirTela(telaEstatisticas);
         }
 
         private void pnlConteudo_Paint(object sender, PaintEventArgs e)

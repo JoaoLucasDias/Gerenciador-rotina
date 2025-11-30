@@ -28,19 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flpTarefas = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
+            // 
+            // flpTarefas
+            // 
+            this.flpTarefas.AutoScroll = true;
+            this.flpTarefas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpTarefas.Location = new System.Drawing.Point(0, 0);
+            this.flpTarefas.Name = "flpTarefas";
+            this.flpTarefas.Size = new System.Drawing.Size(1700, 1061);
+            this.flpTarefas.TabIndex = 0;
+            this.flpTarefas.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTarefas_Paint);
             // 
             // ucEmBreve
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flpTarefas);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucEmBreve";
-            this.Size = new System.Drawing.Size(206, 211);
-            this.Load += new System.EventHandler(this.ucEmBreve_Load_1);
+            this.Size = new System.Drawing.Size(1700, 1061);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.FlowLayoutPanel flpTarefasEmBreve;
+
+        // Declaração da variável flpTarefas, que é inicializada acima
         private System.Windows.Forms.FlowLayoutPanel flpTarefas;
     }
 }
