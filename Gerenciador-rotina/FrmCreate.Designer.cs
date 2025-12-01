@@ -67,6 +67,7 @@
             this.txtbCriarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbCriarSenha.Location = new System.Drawing.Point(1134, 619);
             this.txtbCriarSenha.Name = "txtbCriarSenha";
+            this.txtbCriarSenha.PasswordChar = '*';
             this.txtbCriarSenha.Size = new System.Drawing.Size(709, 62);
             this.txtbCriarSenha.TabIndex = 3;
             // 

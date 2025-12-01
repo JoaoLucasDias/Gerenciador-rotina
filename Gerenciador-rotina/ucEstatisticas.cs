@@ -13,7 +13,7 @@ namespace Gerenciador_rotina
         public int IdUsuarioLogado { get; set; }
 
         // **ATENÇÃO:** MANTENHA A SUA STRING DE CONEXÃO CORRETA AQUI!
-        private string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
+        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
 
         public ucEstatisticas()
         {
@@ -191,6 +191,11 @@ namespace Gerenciador_rotina
                 // Este erro ocorre se a referência System.Windows.Forms.DataVisualization não for adicionada!
                 MessageBox.Show($"Erro ao gerar gráfico: {ex.Message}\n\nINSTRUÇÃO PARA CORREÇÃO:\nPor favor, adicione a referência 'System.Windows.Forms.DataVisualization' ao seu projeto no Visual Studio. (Clique com o botão direito no projeto > Adicionar > Referência > Assemblies > Pesquisar por DataVisualization).", "Erro de Gráfico - Referência Faltando");
             }
+        }
+
+        private void flpEstatisticas_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -33,11 +33,12 @@
             this.pnlConteudo = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnAdicionarTarefa = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.btnEstatistica = new System.Windows.Forms.Button();
             this.btnConcluido = new System.Windows.Forms.Button();
             this.btnHoje = new System.Windows.Forms.Button();
             this.btnEmBreve = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,8 +60,9 @@
             // pnlMenu
             // 
             this.pnlMenu.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.AZUL;
+            this.pnlMenu.Controls.Add(this.btnSair);
             this.pnlMenu.Controls.Add(this.btnAdicionarTarefa);
-            this.pnlMenu.Controls.Add(this.btnBuscar);
+            this.pnlMenu.Controls.Add(this.btnUsuario);
             this.pnlMenu.Controls.Add(this.btnEstatistica);
             this.pnlMenu.Controls.Add(this.btnConcluido);
             this.pnlMenu.Controls.Add(this.btnHoje);
@@ -91,24 +93,24 @@
             this.btnAdicionarTarefa.UseVisualStyleBackColor = true;
             this.btnAdicionarTarefa.Click += new System.EventHandler(this.btnAdicionarTarefa_Click);
             // 
-            // btnBuscar
+            // btnUsuario
             // 
-            this.btnBuscar.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.AZUL;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.ImageKey = "(nenhum/a)";
-            this.btnBuscar.Location = new System.Drawing.Point(0, 203);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(224, 76);
-            this.btnBuscar.TabIndex = 5;
-            this.btnBuscar.Text = "🔎 Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnUsuario.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.AZUL;
+            this.btnUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsuario.FlatAppearance.BorderSize = 0;
+            this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuario.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuario.ImageKey = "(nenhum/a)";
+            this.btnUsuario.Location = new System.Drawing.Point(0, 0);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(224, 76);
+            this.btnUsuario.TabIndex = 5;
+            this.btnUsuario.Text = "🔎 Buscar";
+            this.btnUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnEstatistica
             // 
@@ -186,6 +188,25 @@
             this.btnEmBreve.UseVisualStyleBackColor = true;
             this.btnEmBreve.Click += new System.EventHandler(this.btnEmBreve_Click);
             // 
+            // btnSair
+            // 
+            this.btnSair.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.AZUL;
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSair.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSair.ImageKey = "(nenhum/a)";
+            this.btnSair.Location = new System.Drawing.Point(0, 897);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(224, 76);
+            this.btnSair.TabIndex = 7;
+            this.btnSair.Text = "   SAIR";
+            this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
             // FrmTelaInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,8 +234,9 @@
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlConteudo;
         private System.Windows.Forms.Button btnConcluido;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnUsuario;
         private System.Windows.Forms.Button btnEstatistica;
         private System.Windows.Forms.Button btnAdicionarTarefa;
+        private System.Windows.Forms.Button btnSair;
     }
 }

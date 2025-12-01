@@ -168,5 +168,24 @@ namespace Gerenciador_rotina
         {
             // Implementação do Paint
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+              "Tem certeza que deseja sair e voltar para a tela de login?",
+              "Mudar de Conta",
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // 2. Cria e mostra a tela de login
+                FrmLog frmLogin = new FrmLog();
+                frmLogin.Show();
+
+                // 3. Fecha a tela principal atual
+                this.Close();
+            }
+        }
     }
 }

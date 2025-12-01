@@ -57,6 +57,7 @@
             this.txtbNovaSenhaConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbNovaSenhaConfirmar.Location = new System.Drawing.Point(1078, 570);
             this.txtbNovaSenhaConfirmar.Name = "txtbNovaSenhaConfirmar";
+            this.txtbNovaSenhaConfirmar.PasswordChar = '*';
             this.txtbNovaSenhaConfirmar.Size = new System.Drawing.Size(709, 62);
             this.txtbNovaSenhaConfirmar.TabIndex = 8;
             this.txtbNovaSenhaConfirmar.TextChanged += new System.EventHandler(this.txtbNovaSenhaConfirmar_TextChanged);
@@ -70,6 +71,7 @@
             this.txtbNovaSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbNovaSenha.Location = new System.Drawing.Point(1078, 375);
             this.txtbNovaSenha.Name = "txtbNovaSenha";
+            this.txtbNovaSenha.PasswordChar = '*';
             this.txtbNovaSenha.Size = new System.Drawing.Size(709, 62);
             this.txtbNovaSenha.TabIndex = 9;
             // 

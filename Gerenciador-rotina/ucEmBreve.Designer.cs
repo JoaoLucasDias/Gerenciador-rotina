@@ -34,6 +34,8 @@
             // flpTarefas
             // 
             this.flpTarefas.AutoScroll = true;
+            this.flpTarefas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.flpTarefas.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.INSERIR_CÓDIGO3;
             this.flpTarefas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpTarefas.Location = new System.Drawing.Point(0, 0);
             this.flpTarefas.Name = "flpTarefas";

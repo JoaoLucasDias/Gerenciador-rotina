@@ -36,6 +36,7 @@
             // flpConcluidas
             // 
             this.flpConcluidas.AutoScroll = true;
+            this.flpConcluidas.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.INSERIR_CÓDIGO2;
             this.flpConcluidas.Controls.Add(this.btnLimparTudo);
             this.flpConcluidas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpConcluidas.Location = new System.Drawing.Point(0, 0);

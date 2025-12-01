@@ -12,7 +12,7 @@ namespace Gerenciador_rotina
 
         // **ATENÇÃO:** MANTENHA A SUA STRING DE CONEXÃO CORRETA AQUI!
         // Use a string de conexão que você já utiliza na sua aplicação.
-        private string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
+        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
 
         public ucHoje()
         {

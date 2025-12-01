@@ -34,12 +34,13 @@
             // flpEstatisticas
             // 
             this.flpEstatisticas.AutoScroll = true;
+            this.flpEstatisticas.BackgroundImage = global::Gerenciador_rotina.Properties.Resources.INSERIR_CÓDIGO3;
             this.flpEstatisticas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpEstatisticas.Location = new System.Drawing.Point(0, 0);
             this.flpEstatisticas.Name = "flpEstatisticas";
             this.flpEstatisticas.Size = new System.Drawing.Size(150, 150);
             this.flpEstatisticas.TabIndex = 0;
-            //this.flpEstatisticas.Paint += new System.Windows.Forms.PaintEventHandler(this.flpEstatisticas_Paint);
+            this.flpEstatisticas.Paint += new System.Windows.Forms.PaintEventHandler(this.flpEstatisticas_Paint);
             // 
             // ucEstatisticas
             // 

@@ -35,7 +35,7 @@ namespace Gerenciador_rotina
 
             try
             {
-                using (SqlConnection con = new SqlConnection("Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas"))
+                using (SqlConnection con = new SqlConnection("Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno"))
                 {
                     con.Open();
 

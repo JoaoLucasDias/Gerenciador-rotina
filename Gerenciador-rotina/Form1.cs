@@ -55,8 +55,8 @@ namespace Gerenciador_rotina
             }
 
             // ATENÇÃO: Verifique se o nome da fonte de dados (NOTE_JOAO) e a senha estão corretos no seu ambiente!
-            string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
-
+            //  string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
+            string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
