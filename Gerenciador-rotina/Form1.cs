@@ -2,94 +2,112 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SqlClient; // Importa a biblioteca para conexão com o banco de dados SQL Server
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; // Importa a biblioteca para trabalhar com a interface gráfica
 
 namespace Gerenciador_rotina
 {
+    // Define a classe do formulário de Login
     public partial class FrmLog : Form
     {
-        // Variável estática para manter o ID do usuário em toda a aplicação (boa alternativa, mas vamos passar via construtor!)
+        // Variável estática declarada para armazenar o ID do usuário após o login.
+        // O uso desta variável é opcional, já que o ID é passado via construtor para FrmTelaInicial.
         public static int UsuarioLogadoId;
 
+        // Construtor do formulário
         public FrmLog()
         {
+            // Inicializa todos os componentes visuais definidos no designer
             InitializeComponent();
         }
 
+        // Evento de clique do botão "Criar Conta"
         private void btnCriar_Click(object sender, EventArgs e)
         {
+            // Cria uma nova instância do formulário de criação de conta (FrmCreate)
             FrmCreate novaJanela = new FrmCreate();
+            // Exibe a nova janela
             novaJanela.Show();
         }
 
-        // Método btnLogin_Click original (vazio), o código real está em btnLogin_Click_1
-
+        // Evento de clique do botão "Esqueceu a Senha"
         private void btnEsqueceuSenha_Click(object sender, EventArgs e)
         {
+            // Cria uma nova instância do formulário de recuperação de senha (FrmForgotKey)
             FrmForgotKey frmForgotKey = new FrmForgotKey();
-
+            // Exibe a nova janela
             frmForgotKey.Show();
-
         }
 
+        // Evento disparado no carregamento do formulário (sem lógica implementada aqui)
         private void FrmLog_Load(object sender, EventArgs e)
         {
-
+            // Este método está vazio e pode ser usado para inicializações futuras
         }
 
+        // Evento principal de clique para realizar o Login
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
+            // Pega o texto dos campos de email e senha e remove espaços em branco extras
             string email = txtbLogEmail.Text.Trim();
             string senha = txtbLogSenha.Text.Trim();
 
-            // 🔹 Verifica se os campos estão preenchidos
+            // Verifica se os campos de email ou senha estão vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
             {
+                // Exibe uma mensagem de erro se algum campo não foi preenchido
                 MessageBox.Show("Por favor, preencha todos os campos antes de continuar.");
-                return;
+                return; // Encerra a execução do método
             }
 
-            // ATENÇÃO: Verifique se o nome da fonte de dados (NOTE_JOAO) e a senha estão corretos no seu ambiente!
-            //  string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
-            string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
+            // String de conexão com o banco de dados SQL Server
+            string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
+
+            // Cria uma conexão com o banco de dados usando o 'using' para garantir o fechamento
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
                 {
+                    // Abre a conexão com o banco de dados
                     con.Open();
 
-                    // PRIMEIRA CONSULTA: Verifica se o login é válido E captura o ID na mesma query (Mais eficiente!)
+                    // Query SQL para buscar o ID do usuário onde o email E a senha correspondem aos valores digitados
                     string query = "SELECT id FROM usuario WHERE email=@Email AND senha=@Senha";
+
+                    // Cria o comando SQL com a query e a conexão
                     SqlCommand cmd = new SqlCommand(query, con);
+
+                    // Adiciona os valores de email e senha como parâmetros (evita SQL Injection)
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Senha", senha);
 
-                    // Usa ExecuteScalar para tentar buscar o ID. Se não encontrar, retorna null.
+                    // Executa a query e tenta retornar o primeiro valor da primeira linha (o ID). 
+                    // Se nenhum usuário for encontrado, retorna null.
                     object result = cmd.ExecuteScalar();
 
+                    // Verifica se a consulta retornou um ID (login bem-sucedido)
                     if (result != null)
                     {
-                        int idUsuario = Convert.ToInt32(result); // O ID é o resultado da consulta!
+                        // Converte o resultado (o ID) para um número inteiro
+                        int idUsuario = Convert.ToInt32(result);
 
+                        // Exibe uma mensagem de sucesso
                         MessageBox.Show("Login realizado com sucesso!");
+
+                        // Oculta o formulário de login atual
                         this.Hide();
 
-                        // 🔑 CORREÇÃO CRÍTICA: Passa o ID do usuário logado para o construtor da tela principal.
+                        // Cria uma nova instância do formulário principal, PASSANDO o ID do usuário para o construtor
                         FrmTelaInicial frmTelaInicial = new FrmTelaInicial(idUsuario);
+
+                        // Exibe o formulário principal
                         frmTelaInicial.Show();
 
-                        // O código a seguir (para pegar o ID novamente e inserir categorias) pode ser otimizado, 
-                        // mas vamos deixá-lo aqui, pois o ID já foi armazenado na variável local 'idUsuario'.
-
-                        // UsuarioLogadoId = idUsuario; // Esta linha não é mais estritamente necessária se usarmos o construtor
-
-                        // O bloco de inserção de categorias deve vir depois da primeira consulta, se for a primeira vez do usuário.
-                        // Mas como já foi validado o login, o usuário já existe.
+                        // Trecho de código que tenta inserir categorias padrão:
                         string queryCategorias = @"
 INSERT INTO categoria (id_usuario, nome_categoria)
 VALUES
@@ -97,25 +115,27 @@ VALUES
 (@id, 'Trabalho'),
 (@id, 'Hobbie')";
 
-                        // Este código está incompleto no arquivo de origem.
-                        // Se você quiser inserir categorias padrão APENAS se não existirem,
-                        // precisará de uma lógica de verificação antes deste INSERT.
+                        // Este bloco precisa de mais lógica (e de um SqlCommand e execução) para ser funcional.
+                        // Ele deveria verificar se as categorias já existem antes de tentar inserir novamente.
                     }
                     else
                     {
+                        // Se 'result' for nulo, o email ou a senha estão incorretos
                         MessageBox.Show("Usuário ou senha incorretos!");
                     }
                 }
                 catch (Exception ex)
                 {
+                    // Captura e exibe qualquer erro que ocorra durante o processo de conexão ou execução da query
                     MessageBox.Show("Erro: " + ex.Message);
                 }
             }
         }
 
+        // Evento disparado quando o texto da caixa de senha muda (sem lógica implementada aqui)
         private void txtbLogSenha_TextChanged(object sender, EventArgs e)
         {
-
+            // Este método está vazio
         }
     }
 }

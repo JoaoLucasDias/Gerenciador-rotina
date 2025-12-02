@@ -106,8 +106,7 @@ namespace Gerenciador_rotina
             OnDeletarTarefa?.Invoke(this, EventArgs.Empty);
         }
 
-        // Se você quiser um botão de RESTAURAR (Mudar STATUS para 'Pendente')
-        // Crie um botão no designer chamado 'btnRestaurar'
+     
 
 
         private void pnlTopoConcluido_Paint(object sender, PaintEventArgs e)

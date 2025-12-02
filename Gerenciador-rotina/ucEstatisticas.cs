@@ -13,7 +13,7 @@ namespace Gerenciador_rotina
         public int IdUsuarioLogado { get; set; }
 
         // **ATENÇÃO:** MANTENHA A SUA STRING DE CONEXÃO CORRETA AQUI!
-        private string connectionString = @"Data Source=sqlexpress;Initial Catalog=CJ3027716PR2;User ID=aluno;Password=aluno";
+        private string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
 
         public ucEstatisticas()
         {

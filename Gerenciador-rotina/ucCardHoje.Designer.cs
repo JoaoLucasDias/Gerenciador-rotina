@@ -62,28 +62,30 @@
             this.pnlTopoHoje.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
             this.pnlTopoHoje.Size = new System.Drawing.Size(1698, 70);
             this.pnlTopoHoje.TabIndex = 1;
-            //this.pnlTopoHoje.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTopoHoje_Paint);
             // 
             // FALTAM
             // 
             this.FALTAM.AutoSize = true;
+            this.FALTAM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FALTAM.Location = new System.Drawing.Point(441, 10);
             this.FALTAM.Name = "FALTAM";
-            this.FALTAM.Size = new System.Drawing.Size(49, 13);
+            this.FALTAM.Size = new System.Drawing.Size(52, 17);
             this.FALTAM.TabIndex = 8;
             this.FALTAM.Text = "FALTAM";
             // 
             // DATA
             // 
             this.DATA.AutoSize = true;
+            this.DATA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DATA.Location = new System.Drawing.Point(295, 10);
             this.DATA.Name = "DATA";
-            this.DATA.Size = new System.Drawing.Size(36, 13);
+            this.DATA.Size = new System.Drawing.Size(38, 17);
             this.DATA.TabIndex = 7;
             this.DATA.Text = "DATA";
             // 
             // btnExpandirHoje
             // 
+            this.btnExpandirHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExpandirHoje.Location = new System.Drawing.Point(3, 41);
             this.btnExpandirHoje.Name = "btnExpandirHoje";
             this.btnExpandirHoje.Size = new System.Drawing.Size(75, 23);
@@ -93,6 +95,7 @@
             // 
             // btnConcluirHoje
             // 
+            this.btnConcluirHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConcluirHoje.Location = new System.Drawing.Point(740, 10);
             this.btnConcluirHoje.Name = "btnConcluirHoje";
             this.btnConcluirHoje.Size = new System.Drawing.Size(90, 30);
@@ -102,6 +105,7 @@
             // 
             // btnDeletarHoje
             // 
+            this.btnDeletarHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletarHoje.Location = new System.Drawing.Point(650, 10);
             this.btnDeletarHoje.Name = "btnDeletarHoje";
             this.btnDeletarHoje.Size = new System.Drawing.Size(80, 30);
@@ -111,6 +115,7 @@
             // 
             // btnEditarHoje
             // 
+            this.btnEditarHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarHoje.Location = new System.Drawing.Point(564, 8);
             this.btnEditarHoje.Name = "btnEditarHoje";
             this.btnEditarHoje.Size = new System.Drawing.Size(80, 30);
@@ -120,6 +125,7 @@
             // 
             // lblFaltamHoje
             // 
+            this.lblFaltamHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFaltamHoje.Location = new System.Drawing.Point(441, 32);
             this.lblFaltamHoje.Name = "lblFaltamHoje";
             this.lblFaltamHoje.Size = new System.Drawing.Size(100, 20);
@@ -128,6 +134,7 @@
             // 
             // lblDataHoje
             // 
+            this.lblDataHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataHoje.Location = new System.Drawing.Point(295, 32);
             this.lblDataHoje.Name = "lblDataHoje";
             this.lblDataHoje.Size = new System.Drawing.Size(120, 20);
@@ -136,6 +143,7 @@
             // 
             // lblTituloHoje
             // 
+            this.lblTituloHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloHoje.Location = new System.Drawing.Point(10, 10);
             this.lblTituloHoje.Name = "lblTituloHoje";
             this.lblTituloHoje.Size = new System.Drawing.Size(250, 20);

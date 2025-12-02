@@ -91,24 +91,26 @@
             // FALTAM
             // 
             this.FALTAM.AutoSize = true;
+            this.FALTAM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FALTAM.Location = new System.Drawing.Point(441, 10);
             this.FALTAM.Name = "FALTAM";
-            this.FALTAM.Size = new System.Drawing.Size(49, 13);
+            this.FALTAM.Size = new System.Drawing.Size(52, 17);
             this.FALTAM.TabIndex = 8;
             this.FALTAM.Text = "FALTAM";
             // 
             // DATA
             // 
             this.DATA.AutoSize = true;
+            this.DATA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DATA.Location = new System.Drawing.Point(295, 10);
             this.DATA.Name = "DATA";
-            this.DATA.Size = new System.Drawing.Size(36, 13);
+            this.DATA.Size = new System.Drawing.Size(38, 17);
             this.DATA.TabIndex = 7;
             this.DATA.Text = "DATA";
             // 
             // btnExpandir
             // 
-            // btnExpandir
+            this.btnExpandir.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExpandir.Location = new System.Drawing.Point(3, 41);
             this.btnExpandir.Name = "btnExpandir";
             this.btnExpandir.Size = new System.Drawing.Size(75, 23);
@@ -116,10 +118,10 @@
             this.btnExpandir.Text = "Expandir";
             this.btnExpandir.UseVisualStyleBackColor = true;
             this.btnExpandir.Click += new System.EventHandler(this.btnExpandir_Click);
-
             // 
             // btnConcluir
             // 
+            this.btnConcluir.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConcluir.Location = new System.Drawing.Point(740, 10);
             this.btnConcluir.Name = "btnConcluir";
             this.btnConcluir.Size = new System.Drawing.Size(90, 30);
@@ -130,6 +132,7 @@
             // 
             // btnDeletar
             // 
+            this.btnDeletar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletar.Location = new System.Drawing.Point(650, 10);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(80, 30);
@@ -140,6 +143,7 @@
             // 
             // btnEditar
             // 
+            this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Location = new System.Drawing.Point(564, 8);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(80, 30);
@@ -150,6 +154,7 @@
             // 
             // lblFaltam
             // 
+            this.lblFaltam.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFaltam.Location = new System.Drawing.Point(441, 32);
             this.lblFaltam.Name = "lblFaltam";
             this.lblFaltam.Size = new System.Drawing.Size(100, 20);
@@ -159,6 +164,7 @@
             // 
             // lblData
             // 
+            this.lblData.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblData.Location = new System.Drawing.Point(295, 32);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(120, 20);
@@ -168,6 +174,7 @@
             // 
             // lblTitulo
             // 
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(10, 10);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(250, 20);
