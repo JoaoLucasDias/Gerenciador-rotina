@@ -61,6 +61,9 @@ namespace Gerenciador_rotina
 
                 MessageBox.Show("Senha alterada com sucesso!");
                 this.Close();
+                FrmLog frmLog = new FrmLog();
+                frmLog.ShowDialog();
+              
             }
             catch (Exception ex)
             {

@@ -34,7 +34,6 @@
             this.btnExpandirHoje = new System.Windows.Forms.Button();
             this.btnConcluirHoje = new System.Windows.Forms.Button();
             this.btnDeletarHoje = new System.Windows.Forms.Button();
-            this.btnEditarHoje = new System.Windows.Forms.Button();
             this.lblFaltamHoje = new System.Windows.Forms.Label();
             this.lblDataHoje = new System.Windows.Forms.Label();
             this.lblTituloHoje = new System.Windows.Forms.Label();
@@ -52,7 +51,6 @@
             this.pnlTopoHoje.Controls.Add(this.btnExpandirHoje);
             this.pnlTopoHoje.Controls.Add(this.btnConcluirHoje);
             this.pnlTopoHoje.Controls.Add(this.btnDeletarHoje);
-            this.pnlTopoHoje.Controls.Add(this.btnEditarHoje);
             this.pnlTopoHoje.Controls.Add(this.lblFaltamHoje);
             this.pnlTopoHoje.Controls.Add(this.lblDataHoje);
             this.pnlTopoHoje.Controls.Add(this.lblTituloHoje);
@@ -112,16 +110,6 @@
             this.btnDeletarHoje.TabIndex = 4;
             this.btnDeletarHoje.Text = "DELETAR";
             this.btnDeletarHoje.UseVisualStyleBackColor = true;
-            // 
-            // btnEditarHoje
-            // 
-            this.btnEditarHoje.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarHoje.Location = new System.Drawing.Point(564, 8);
-            this.btnEditarHoje.Name = "btnEditarHoje";
-            this.btnEditarHoje.Size = new System.Drawing.Size(80, 30);
-            this.btnEditarHoje.TabIndex = 3;
-            this.btnEditarHoje.Text = "EDITAR";
-            this.btnEditarHoje.UseVisualStyleBackColor = true;
             // 
             // lblFaltamHoje
             // 
@@ -198,7 +186,6 @@
         private System.Windows.Forms.Button btnExpandirHoje;
         private System.Windows.Forms.Button btnConcluirHoje;
         private System.Windows.Forms.Button btnDeletarHoje;
-        private System.Windows.Forms.Button btnEditarHoje;
         private System.Windows.Forms.Label lblFaltamHoje;
         private System.Windows.Forms.Label lblDataHoje;
         private System.Windows.Forms.Label lblTituloHoje;

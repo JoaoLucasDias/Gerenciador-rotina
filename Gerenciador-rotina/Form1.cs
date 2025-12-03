@@ -14,36 +14,35 @@ namespace Gerenciador_rotina
     // Define a classe do formulário de Login
     public partial class FrmLog : Form
     {
-        // Variável estática declarada para armazenar o ID do usuário após o login.
-        // O uso desta variável é opcional, já que o ID é passado via construtor para FrmTelaInicial.
+       
         public static int UsuarioLogadoId;
 
         // Construtor do formulário
         public FrmLog()
         {
-            // Inicializa todos os componentes visuais definidos no designer
+          
             InitializeComponent();
         }
 
-        // Evento de clique do botão "Criar Conta"
+        
         private void btnCriar_Click(object sender, EventArgs e)
         {
-            // Cria uma nova instância do formulário de criação de conta (FrmCreate)
+           
             FrmCreate novaJanela = new FrmCreate();
-            // Exibe a nova janela
+           
             novaJanela.Show();
         }
 
-        // Evento de clique do botão "Esqueceu a Senha"
+       
         private void btnEsqueceuSenha_Click(object sender, EventArgs e)
         {
-            // Cria uma nova instância do formulário de recuperação de senha (FrmForgotKey)
+         
             FrmForgotKey frmForgotKey = new FrmForgotKey();
-            // Exibe a nova janela
+          
             frmForgotKey.Show();
         }
 
-        // Evento disparado no carregamento do formulário (sem lógica implementada aqui)
+     
         private void FrmLog_Load(object sender, EventArgs e)
         {
             // Este método está vazio e pode ser usado para inicializações futuras
@@ -92,7 +91,7 @@ namespace Gerenciador_rotina
                     // Verifica se a consulta retornou um ID (login bem-sucedido)
                     if (result != null)
                     {
-                        // Converte o resultado (o ID) para um número inteiro
+                       
                         int idUsuario = Convert.ToInt32(result);
 
                         // Exibe uma mensagem de sucesso

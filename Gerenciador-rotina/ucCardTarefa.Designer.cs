@@ -36,7 +36,6 @@
             this.btnExpandir = new System.Windows.Forms.Button();
             this.btnConcluir = new System.Windows.Forms.Button();
             this.btnDeletar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.lblFaltam = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -76,7 +75,6 @@
             this.pnlTopo.Controls.Add(this.btnExpandir);
             this.pnlTopo.Controls.Add(this.btnConcluir);
             this.pnlTopo.Controls.Add(this.btnDeletar);
-            this.pnlTopo.Controls.Add(this.btnEditar);
             this.pnlTopo.Controls.Add(this.lblFaltam);
             this.pnlTopo.Controls.Add(this.lblData);
             this.pnlTopo.Controls.Add(this.lblTitulo);
@@ -141,17 +139,6 @@
             this.btnDeletar.UseVisualStyleBackColor = true;
             this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(564, 8);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(80, 30);
-            this.btnEditar.TabIndex = 3;
-            this.btnEditar.Text = "EDITAR";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // lblFaltam
             // 
             this.lblFaltam.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,7 +195,6 @@
         private System.Windows.Forms.Button btnExpandir;
         private System.Windows.Forms.Button btnConcluir;
         private System.Windows.Forms.Button btnDeletar;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Label lblFaltam;
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Label FALTAM;

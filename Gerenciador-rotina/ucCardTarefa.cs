@@ -83,16 +83,11 @@ namespace Gerenciador_rotina
             OnConcluirTarefa?.Invoke(this, EventArgs.Empty);
         }
 
-        // Botão de editar
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            OnEditarTarefa?.Invoke(this, EventArgs.Empty);
-        }
 
-        // Atualiza o texto de “faltam X dias”
+      
         private void AtualizarDiasRestantes(DateTime dataTarefa)
         {
-            // Pega a data de hoje sem a componente de hora
+          
             DateTime hoje = DateTime.Today;
 
             // Calcula a diferença em dias (considerando apenas a data)

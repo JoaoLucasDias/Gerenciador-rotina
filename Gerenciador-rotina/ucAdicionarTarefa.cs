@@ -13,10 +13,10 @@ namespace Gerenciador_rotina
 {
     public partial class ucAdicionarTarefa : UserControl
     {
-        // 🚨 1. PROPRIEDADE PARA RECEBER O ID DO USUÁRIO LOGADO 
+     
         public int IdUsuarioLogado { get; set; }
 
-        // Sua string de conexão (AJUSTE SE NECESSÁRIO)
+        
         private string connectionString = @"Data Source=NOTE_JOAO;Initial Catalog=CJ3027716PR2_LOCAL;User ID=sa;Password=jaojaolucas";
 
         public ucAdicionarTarefa()
@@ -29,7 +29,7 @@ namespace Gerenciador_rotina
 
         private void ucAdicionarTarefa_Load(object sender, EventArgs e)
         {
-            // Verifica se o ID do usuário foi passado antes de carregar
+         
             if (IdUsuarioLogado > 0)
             {
                 CarregarCategorias();
@@ -40,24 +40,24 @@ namespace Gerenciador_rotina
             }
         }
 
-        // Agora o método usa a propriedade local 'IdUsuarioLogado'
+    
         private void CarregarCategorias()
         {
-            // Usamos a propriedade IdUsuarioLogado
+         
             int idUsuario = IdUsuarioLogado;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
 
-                // 1️⃣ Verifica se já existem categorias para o usuário logado
+                
                 string checkQuery = "SELECT COUNT(*) FROM Categoria WHERE Id_Usuario = @id_usuario";
                 SqlCommand checkCmd = new SqlCommand(checkQuery, con);
-                // 💥 CORREÇÃO AQUI: Usa IdUsuarioLogado, não FrmLog.UsuarioLogadoId
+              
                 checkCmd.Parameters.AddWithValue("@id_usuario", idUsuario);
                 int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-                // 2️⃣ Se não houver nenhuma, cria as 3 categorias padrão
+          
                 if (count == 0)
                 {
                     string insertPadrao = @"
@@ -67,15 +67,15 @@ namespace Gerenciador_rotina
                     ('Hobby', @id_usuario)";
 
                     SqlCommand insertCmd = new SqlCommand(insertPadrao, con);
-                    // 💥 CORREÇÃO AQUI
+               
                     insertCmd.Parameters.AddWithValue("@id_usuario", idUsuario);
                     insertCmd.ExecuteNonQuery();
                 }
 
-                // 3️⃣ Carrega todas as categorias do usuário
+            //importante!
                 string query = "SELECT Id, Nome_categoria FROM Categoria WHERE Id_Usuario = @id_usuario";
                 SqlCommand cmd = new SqlCommand(query, con);
-                // 💥 CORREÇÃO AQUI
+                
                 cmd.Parameters.AddWithValue("@id_usuario", idUsuario);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -94,7 +94,7 @@ namespace Gerenciador_rotina
             string descricao = txtDescricao.Text.Trim();
             DateTime data = dtpData.Value;
 
-            // Verifica se um valor foi selecionado no ComboBox
+            
             if (cmbCategoria.SelectedValue == null)
             {
                 MessageBox.Show("Selecione uma categoria válida.", "Erro de Seleção");
@@ -102,7 +102,7 @@ namespace Gerenciador_rotina
             }
 
             int idCategoria = (int)cmbCategoria.SelectedValue;
-            // 💥 CORREÇÃO AQUI: Usa a propriedade local 'IdUsuarioLogado'
+            
             int idUsuario = IdUsuarioLogado;
 
             if (string.IsNullOrEmpty(titulo))
@@ -169,7 +169,6 @@ namespace Gerenciador_rotina
                 return;
             }
 
-            // 💥 CORREÇÃO AQUI: Usa a propriedade local 'IdUsuarioLogado'
             int idUsuario = IdUsuarioLogado;
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -178,14 +177,14 @@ namespace Gerenciador_rotina
                 string query = "INSERT INTO Categoria (Nome_categoria, Id_Usuario) VALUES (@nome, @id_usuario)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@nome", novaCategoria);
-                cmd.Parameters.AddWithValue("@id_usuario", idUsuario); // ID já corrigido
+                cmd.Parameters.AddWithValue("@id_usuario", idUsuario); 
                 cmd.ExecuteNonQuery();
             }
 
             MessageBox.Show("Categoria adicionada com sucesso!");
             txtNovaCategoria.Clear();
             pnlNovaCategoria.Visible = false;
-            CarregarCategorias(); // Recarrega as categorias após adicionar
+            CarregarCategorias(); 
         }
 
         private void btnCancelarNovaCategoria_Click(object sender, EventArgs e)
@@ -207,6 +206,11 @@ namespace Gerenciador_rotina
         private void pnlNovaCategoria_Paint(object sender, PaintEventArgs e)
         {
             // Seu código aqui, se necessário
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

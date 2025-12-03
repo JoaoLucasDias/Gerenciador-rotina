@@ -71,7 +71,7 @@ namespace Gerenciador_rotina
             btnExpandirHoje.Click += btnExpandirHoje_Click;
             btnConcluirHoje.Click += btnConcluirHoje_Click;
             btnDeletarHoje.Click += btnDeletarHoje_Click;
-            btnEditarHoje.Click += btnEditarHoje_Click; // NOVO
+            ///btnEditarHoje.Click += btnEditarHoje_Click; // NOVO
         }
 
         private void btnExpandirHoje_Click(object sender, EventArgs e)
